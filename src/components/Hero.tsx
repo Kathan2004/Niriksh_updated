@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Lock, Server } from 'lucide-react';
+import { WaveAnimation } from './waves/WaveAnimation';
 
 export function Hero() {
   return (
@@ -65,6 +66,18 @@ export function Hero() {
           />
         </svg>
       </div>
+      </div>
+      
+      <WaveAnimation 
+        color="rgb(243, 244, 246)" 
+        className="z-10 dark:hidden" 
+        variant="hero" 
+      />
+      <WaveAnimation 
+        color="rgb(17, 24, 39)" 
+        className="z-10 hidden dark:block" 
+        variant="hero" 
+      />
     </section>
   );
 }
