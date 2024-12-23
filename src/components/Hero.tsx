@@ -23,21 +23,42 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col md:flex-row gap-6 justify-center mb-16 animate-fade-in-delay-2">
-            <button className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transform hover:scale-105 transition-all">
-              Get Started
+            <button 
+              onClick={() => window.location.href = '/contact'}
+              className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transform hover:scale-105 transition-all"
+            >
+              Request Demo
             </button>
-            <button className="px-8 py-3 bg-transparent border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-lg transform hover:scale-105 transition-all">
+            <button 
+              onClick={() => window.location.href = '/about'}
+              className="px-8 py-3 bg-transparent border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-lg transform hover:scale-105 transition-all"
+            >
               Learn More
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
             {[
-              { icon: Shield, title: 'Advanced Protection', desc: 'AI-powered security' },
-              { icon: Lock, title: '24/7 Monitoring', desc: 'Round-the-clock security' },
-              { icon: Server, title: 'Compliance Ready', desc: 'Meet all standards' }
+              { 
+                icon: Shield, 
+                title: 'Impersonation Protection', 
+                desc: 'Prevent impersonation threats with advanced detection and monitoring.' 
+              },
+              { 
+                icon: Lock, 
+                title: 'Takedown Services', 
+                desc: 'Efficient removal of phishing websites and malicious content.' 
+              },
+              { 
+                icon: Server, 
+                title: '24/7 Monitoring', 
+                desc: 'Round-the-clock protection for your business assets.' 
+              }
             ].map((item, i) => (
-              <div key={i} className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+              <div 
+                key={i} 
+                className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all"
+              >
                 <div className="w-16 h-16 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-8 h-8 text-purple-400" />
                 </div>
