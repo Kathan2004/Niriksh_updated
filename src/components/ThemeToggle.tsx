@@ -1,21 +1,16 @@
-import React from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
+import { useState, useEffect } from 'react';
 
-export function ThemeToggle() {
-  const { isDark, toggleTheme } = useTheme();
+export function useTheme() {
+  const [isDark, setIsDark] = useState(true); // Force dark theme by default
 
-  return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
-      aria-label="Toggle theme"
-    >
-      {isDark ? (
-        <Sun className="w-5 h-5 text-yellow-400" />
-      ) : (
-        <Moon className="w-5 h-5 text-purple-600" />
-      )}
-    </button>
-  );
+  useEffect(() => {
+    // Apply the dark theme to the document body
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark'); // Ensure 'dark' is set in localStorage
+
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+  const toggleTheme = () => setIsDark((prev) => !prev); // This will allow you to toggle the theme
+
+  return { isDark, toggleTheme };
 }
