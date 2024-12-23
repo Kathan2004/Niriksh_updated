@@ -3,21 +3,21 @@ import { Shield, Lock, Server } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 dark:from-gray-800 dark:via-purple-800 dark:to-gray-800 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide bg-repeat"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-48">
         <div className="text-center max-w-4xl mx-auto">
-          <h3 className="text-purple-400 font-semibold mb-4 animate-fade-in">
+          <h3 className="text-purple-400 font-semibold mb-4 animate-fade-in dark:text-purple-300">
             सुरक्षा हमारी प्राथमिकता
           </h3>
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white leading-tight animate-slide-up">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white leading-tight animate-slide-up dark:text-white">
             Secure Your Digital
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Future</span>
           </h1>
-          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-delay">
+          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-delay dark:text-gray-400">
             Empowering Indian businesses with next-generation cybersecurity solutions. 
             From startups to enterprises, we protect what matters most.
           </p>
@@ -38,32 +38,28 @@ export function Hero() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
-            {[
-              { 
-                icon: Shield, 
-                title: 'Impersonation Protection', 
-                desc: 'Prevent impersonation threats with advanced detection and monitoring.' 
-              },
-              { 
-                icon: Lock, 
-                title: 'Takedown Services', 
-                desc: 'Efficient removal of phishing websites and malicious content.' 
-              },
-              { 
-                icon: Server, 
-                title: '24/7 Monitoring', 
-                desc: 'Round-the-clock protection for your business assets.' 
-              }
-            ].map((item, i) => (
+            {[{
+              icon: Shield,
+              title: 'Impersonation Protection',
+              desc: 'Prevent impersonation threats with advanced detection and monitoring.'
+            }, {
+              icon: Lock,
+              title: 'Takedown Services',
+              desc: 'Efficient removal of phishing websites and malicious content.'
+            }, {
+              icon: Server,
+              title: '24/7 Monitoring',
+              desc: 'Round-the-clock protection for your business assets.'
+            }].map((item, i) => (
               <div 
                 key={i} 
-                className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all"
+                className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all dark:bg-gray-700/60 dark:border-purple-600/40"
               >
                 <div className="w-16 h-16 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-8 h-8 text-purple-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
+                <h3 className="text-xl font-bold text-white mb-2 dark:text-white">{item.title}</h3>
+                <p className="text-gray-400 dark:text-gray-300">{item.desc}</p>
               </div>
             ))}
           </div>
