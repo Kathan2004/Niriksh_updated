@@ -1,9 +1,13 @@
 import React from 'react';
 import { Shield, Lock, Server } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Hero() {
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
+      <div className="absolute top-4 right-4 z-20">
+        <ThemeToggle />
+      </div>
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide bg-repeat"></div>
       </div>
