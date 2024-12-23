@@ -7,14 +7,14 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 transition-all"
-      style={{
-        background: linear-gradient(to bottom, #FFFFFF, #F3E8FF); /* Light mode */
-        background: linear-gradient(to bottom, #111827, #4C1D95); /* Dark mode */
-        
-        backdropFilter: 'blur(10px)', // Glassmorphism effect
-      }}
-    >
+    <header
+    className="sticky top-0 z-50 transition-all"
+    style={{
+      background: 'linear-gradient(to bottom, #FFFFFF, #F3E8FF)', // Light mode gradient
+      backdropFilter: 'blur(10px)', // Glassmorphism effect
+    }}
+    className="dark:bg-gradient-to-b dark:from-gray-900 dark:to-purple-900" // Dark mode gradient
+  >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 py-4">
           <div className="flex items-center gap-2">
