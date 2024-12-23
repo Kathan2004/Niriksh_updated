@@ -2,18 +2,18 @@ import React from 'react';
 import { Mail, MapPin } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
-
 export function Contact(): JSX.Element {
   return (
-    <section className="relative pt-16 pb-20 px-6 bg-gradient-to-b from-gray-100 to-purple-50 dark:from-gray-900 dark:to-purple-900 overflow-hidden">
-      <div className="container mx-auto px-4 text-center">
+    <section className="relative py-16 bg-gradient-to-b from-purple-100 to-purple-50 dark:from-gray-900 dark:to-purple-900 overflow-hidden">
+      <div className="container mx-auto px-6">
         <SectionHeader
           subtitle="संपर्क करें"
           title="Get in Touch"
           description="Have questions about our cybersecurity solutions? Our team is here to help protect your digital assets."
         />
-        
+
         <div className="grid md:grid-cols-2 gap-12 mt-12">
+          {/* Contact Form */}
           <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-xl transition-all">
             <form className="space-y-6">
               <div>
@@ -67,6 +67,7 @@ export function Contact(): JSX.Element {
             </form>
           </div>
 
+          {/* Contact Info */}
           <div className="space-y-8">
             <div className="flex items-start gap-4">
               <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -76,9 +77,7 @@ export function Contact(): JSX.Element {
                 <h3 className="font-semibold text-lg mb-1 dark:text-white">Email Us</h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   <a
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@niriksh.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:sales@niriksh.com"
                     className="text-purple-600 dark:text-purple-400 hover:underline"
                   >
                     sales@niriksh.com
@@ -104,16 +103,16 @@ export function Contact(): JSX.Element {
       </div>
 
       {/* Wave Animation */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 z-0">
         <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
           <defs>
             <path id="wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g className="wave-parallax">
-            <use href="#wave" x="48" y="0" fill="rgba(147, 51, 234, 0.7)" />
-            <use href="#wave" x="48" y="3" fill="rgba(147, 51, 234, 0.5)" />
-            <use href="#wave" x="48" y="5" fill="rgba(147, 51, 234, 0.3)" />
-            <use href="#wave" x="48" y="7" fill="rgba(147, 51, 234, 0.2)" />
+            <use href="#wave" x="48" y="0" fill="rgba(126, 34, 206, 0.7)" />
+            <use href="#wave" x="48" y="3" fill="rgba(126, 34, 206, 0.5)" />
+            <use href="#wave" x="48" y="5" fill="rgba(126, 34, 206, 0.3)" />
+            <use href="#wave" x="48" y="7" fill="rgba(126, 34, 206, 0.2)" />
           </g>
         </svg>
       </div>
