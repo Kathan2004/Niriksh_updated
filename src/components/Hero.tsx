@@ -1,144 +1,79 @@
 import React from 'react';
 import { Shield, Lock, Server } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
+import { WaveAnimation } from './waves/WaveAnimation';
 
 export function Hero() {
-  const { isDark } = useTheme(); // Dynamically updates based on the global theme toggle
-
   return (
-    <section className={`relative min-h-screen ${
-      isDark 
-        ? 'bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900' 
-        : 'bg-gradient-to-b from-white via-purple-50 to-white'
-    } overflow-hidden`}>
-      <div className="absolute inset-0">
-        <div className={`absolute inset-0 bg-[url('data:image/svg+xml,...')] ${
-          isDark ? 'opacity-30' : 'opacity-10'
-        } animate-slide bg-repeat`}></div>
-      </div>
+    <section className="relative overflow-hidden">
+      <div className="py-12 md:py-20 bg-gradient-to-b from-white to-purple-50 dark:from-gray-900 dark:to-purple-900 transition-colors">
+        <div className="container mx-auto px-4 pb-32">
+          <div className="text-center max-w-4xl mx-auto">
+            <h3 className="text-purple-600 dark:text-purple-400 font-semibold mb-4 animate-fade-in">
+              सुरक्षा हमारी प्राथमिकता
+            </h3>
+            <h1 className="text-3xl md:text-6xl font-bold mb-6 text-purple-600 dark:text-purple-400 leading-tight">
+              Because Your Digital Identity Matters
+            </h1>
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+              Empowering Indian businesses with next-generation cybersecurity solutions. 
+              From startups to enterprises, we protect what matters most.
+            </p>
 
-      <div className="relative z-10 container mx-auto px-4 pt-32 pb-48">
-        <div className="text-center max-w-4xl mx-auto">
-          <h3 className={`${
-            isDark ? 'text-purple-400' : 'text-purple-600'
-          } font-semibold mb-4 animate-fade-in`}>
-            सुरक्षा हमारी प्राथमिकता
-          </h3>
-          <h1 className={`text-4xl md:text-7xl font-bold mb-6 ${
-            isDark ? 'text-white' : 'text-gray-900'
-          } leading-tight animate-slide-up`}>
-            Because Your Digital 
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Identity Matters</span>
-          </h1>
-          <p className={`text-lg ${
-            isDark ? 'text-gray-300' : 'text-gray-600'
-          } mb-12 max-w-2xl mx-auto animate-fade-in-delay`}>
-            Empowering Indian businesses with next-generation cybersecurity solutions. 
-            From startups to enterprises, we protect what matters most.
-          </p>
-
-          <div className="flex flex-col md:flex-row gap-6 justify-center mb-16 animate-fade-in-delay-2">
-            <button 
-              onClick={() => window.location.href = '/contact'}
-              className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transform hover:scale-105 transition-all"
-            >
-              Request Demo
-            </button>
-            <button 
-              onClick={() => window.location.href = '/about'}
-              className={`px-8 py-3 bg-transparent border-2 ${
-                isDark 
-                  ? 'border-purple-400 text-purple-400 hover:bg-purple-400/10' 
-                  : 'border-purple-600 text-purple-600 hover:bg-purple-50'
-              } rounded-lg transform hover:scale-105 transition-all`}
-            >
-              Learn More
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
-            {[ 
-              { 
-                icon: Shield, 
-                title: 'Impersonation Protection', 
-                desc: 'Prevent impersonation threats with advanced detection and monitoring.' 
-              },
-              { 
-                icon: Lock, 
-                title: 'Takedown Services', 
-                desc: 'Efficient removal of phishing websites and malicious content.' 
-              },
-              { 
-                icon: Server, 
-                title: '24/7 Monitoring', 
-                desc: 'Round-the-clock protection for your business assets.' 
-              }
-            ].map((item, i) => (
-              <div 
-                key={i} 
-                className={`${
-                  isDark 
-                    ? 'bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40' 
-                    : 'bg-white border-purple-200 hover:border-purple-300'
-                } backdrop-blur-lg p-6 rounded-xl border transition-all`}
+            {/* Action Buttons */}
+            <div className="flex justify-center gap-6 mb-16">
+              <button 
+                onClick={() => window.location.href = '/contact'}
+                className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transform hover:scale-105 transition-all"
               >
-                <div className={`w-16 h-16 ${
-                  isDark ? 'bg-purple-900/50' : 'bg-purple-50'
-                } rounded-xl flex items-center justify-center mx-auto mb-4`}>
-                  <item.icon className={`w-8 h-8 ${
-                    isDark ? 'text-purple-400' : 'text-purple-600'
-                  }`} />
+                Request Demo
+              </button>
+              <button 
+                onClick={() => window.location.href = '/about'}
+                className="px-8 py-3 bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
+              >
+                Learn More
+              </button>
+            </div>
+
+            {/* Feature Boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-16">
+              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all backdrop-blur-lg">
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 className={`text-xl font-bold ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                } mb-2`}>{item.title}</h3>
-                <p className={
-                  isDark ? 'text-gray-400' : 'text-gray-600'
-                }>{item.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Impersonation Protection</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                  Prevent impersonation threats with advanced detection and monitoring.
+                </p>
               </div>
-            ))}
+
+              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all backdrop-blur-lg">
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Lock className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Takedown Services</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                  Efficient removal of phishing websites and malicious content.
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all backdrop-blur-lg">
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Server className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">24/7 Monitoring</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                  Round-the-clock protection for your business assets.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Wave Animation */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
-          <defs>
-            <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-          </defs>
-          <g className="wave-parallax">
-            <use href="#wave" x="48" y="0" fill="rgba(147, 51, 234, 0.7)" />
-            <use href="#wave" x="48" y="3" fill="rgba(147, 51, 234, 0.5)" />
-            <use href="#wave" x="48" y="5" fill="rgba(147, 51, 234, 0.3)" />
-            <use href="#wave" x="48" y="7" fill="rgba(147, 51, 234, 0.2)" />
-          </g>
-        </svg>
-      </div>
-
-      <style>{`
-        .waves {
-          position: relative;
-          width: 100%;
-          height: 15vh;
-          margin-bottom: -7px;
-          min-height: 100px;
-          max-height: 150px;
-        }
-        
-        .wave-parallax > use {
-          animation: wave-move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-        }
-        .wave-parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
-        .wave-parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
-        .wave-parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
-        .wave-parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
-        
-        @keyframes wave-move-forever {
-          0% { transform: translate3d(-90px,0,0); }
-          100% { transform: translate3d(85px,0,0); }
-        }
-      `}</style>
+      <WaveAnimation color="rgb(243, 244, 246)" className="z-10 dark:hidden" />
+      <WaveAnimation color="rgb(17, 24, 39)" className="z-10 hidden dark:block" />
     </section>
   );
 }
