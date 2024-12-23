@@ -51,7 +51,7 @@ export const features = [
       'Zero-day threat prevention',
       'Secure browsing environment'
     ],
-    image: "https://images.unsplash.com/photo-1558494944-9f5578f707d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1700936655615-65a2aef3b4e7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaCUyMGNvbmZlcmVuY2V8ZW58MHx8MHx8fDA%3D"
   },
   {
     id: 'continuous-visibility',
