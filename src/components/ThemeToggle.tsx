@@ -1,19 +1,22 @@
 // src/components/ThemeToggle.tsx
 import React from 'react';
-import { useTheme } from '../hooks/useTheme';
-import DarkLogo from '../assets/dark-logo.png'; // Path to your dark mode logo
-import LightLogo from '../assets/light-logo.png'; // Path to your light mode logo
+import { Moon, Sun } from 'lucide-react'; // Importing icons from lucide-react
+import { useTheme } from '../hooks/useTheme'; // Importing useTheme hook
 
 export function ThemeToggle() {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <button onClick={toggleTheme} className="theme-toggle-btn">
-      <img
-        src={isDark ? DarkLogo : LightLogo}
-        alt="Theme Toggle"
-        className="theme-toggle-logo"
-      />
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
+      aria-label="Toggle theme"
+    >
+      {isDark ? (
+        <Sun className="w-5 h-5 text-yellow-400" />
+      ) : (
+        <Moon className="w-5 h-5 text-purple-600" />
+      )}
     </button>
   );
 }
