@@ -1,42 +1,15 @@
-'use client'
-
-import React from 'react'
-import { Shield, Lock, Server } from 'lucide-react'
-import { ThemeToggle } from './ThemeToggle'
-import { useTheme } from '../hooks/useTheme'
-
-interface FeatureItem {
-  icon: React.ElementType
-  title: string
-  desc: string
-}
+import React from 'react';
+import { Shield, Lock, Server } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 
 export function Hero() {
-  const { isDark } = useTheme()
-
-  const features: FeatureItem[] = [
-    {
-      icon: Shield,
-      title: 'Impersonation Protection',
-      desc: 'Prevent impersonation threats with advanced detection and monitoring.'
-    },
-    {
-      icon: Lock,
-      title: 'Takedown Services',
-      desc: 'Efficient removal of phishing websites and malicious content.'
-    },
-    {
-      icon: Server,
-      title: '24/7 Monitoring',
-      desc: 'Round-the-clock protection for your business assets.'
-    }
-  ]
+  const { isDark } = useTheme();
 
   return (
     <section className={`relative min-h-screen ${
       isDark 
         ? 'bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900' 
-        : 'bg-gradient-to-b from-gray-100 via-purple-200 to-gray-100'
+        : 'bg-gradient-to-b from-white via-purple-50 to-white'
     } overflow-hidden`}>
       <div className="absolute inset-0">
         <div className={`absolute inset-0 bg-[url('data:image/svg+xml,...')] ${
@@ -47,7 +20,7 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-48">
         <div className="text-center max-w-4xl mx-auto">
           <h3 className={`${
-            isDark ? 'text-purple-300' : 'text-purple-600'
+            isDark ? 'text-purple-400' : 'text-purple-600'
           } font-semibold mb-4 animate-fade-in`}>
             सुरक्षा हमारी प्राथमिकता
           </h3>
@@ -73,34 +46,54 @@ export function Hero() {
             </button>
             <button 
               onClick={() => window.location.href = '/about'}
-              className="px-8 py-3 bg-transparent border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-lg transform hover:scale-105 transition-all"
+              className={`px-8 py-3 bg-transparent border-2 ${
+                isDark 
+                  ? 'border-purple-400 text-purple-400 hover:bg-purple-400/10' 
+                  : 'border-purple-600 text-purple-600 hover:bg-purple-50'
+              } rounded-lg transform hover:scale-105 transition-all`}
             >
               Learn More
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
-            {features.map((item, i) => (
+            {[
+              { 
+                icon: Shield, 
+                title: 'Impersonation Protection', 
+                desc: 'Prevent impersonation threats with advanced detection and monitoring.' 
+              },
+              { 
+                icon: Lock, 
+                title: 'Takedown Services', 
+                desc: 'Efficient removal of phishing websites and malicious content.' 
+              },
+              { 
+                icon: Server, 
+                title: '24/7 Monitoring', 
+                desc: 'Round-the-clock protection for your business assets.' 
+              }
+            ].map((item, i) => (
               <div 
                 key={i} 
                 className={`${
                   isDark 
                     ? 'bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40' 
-                    : 'bg-white/50 border-purple-300/20 hover:border-purple-300/40'
+                    : 'bg-white border-purple-200 hover:border-purple-300'
                 } backdrop-blur-lg p-6 rounded-xl border transition-all`}
               >
                 <div className={`w-16 h-16 ${
-                  isDark ? 'bg-purple-900/50' : 'bg-purple-100'
+                  isDark ? 'bg-purple-900/50' : 'bg-purple-50'
                 } rounded-xl flex items-center justify-center mx-auto mb-4`}>
                   <item.icon className={`w-8 h-8 ${
-                    isDark ? 'text-purple-300' : 'text-purple-600'
+                    isDark ? 'text-purple-400' : 'text-purple-600'
                   }`} />
                 </div>
                 <h3 className={`text-xl font-bold ${
                   isDark ? 'text-white' : 'text-gray-900'
                 } mb-2`}>{item.title}</h3>
                 <p className={
-                  isDark ? 'text-gray-300' : 'text-gray-600'
+                  isDark ? 'text-gray-400' : 'text-gray-600'
                 }>{item.desc}</p>
               </div>
             ))}
@@ -123,10 +116,7 @@ export function Hero() {
         </svg>
       </div>
 
-      {/* Add the Theme Toggle Component */}
-      <ThemeToggle />
-
-      <style jsx>{`
+      <style>{`
         .waves {
           position: relative;
           width: 100%;
@@ -150,5 +140,5 @@ export function Hero() {
         }
       `}</style>
     </section>
-  )
+  );
 }
