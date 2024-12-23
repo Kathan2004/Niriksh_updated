@@ -1,40 +1,50 @@
 'use client'
 
-import React from 'react';
-import { Shield, Lock, Server } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import React from 'react'
+import { Shield, Lock, Server } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'  // Import your ThemeToggle component
+
+interface FeatureItem {
+  icon: React.ElementType
+  title: string
+  desc: string
+}
 
 export function Hero() {
-  const { theme } = useTheme();
+  const features: FeatureItem[] = [
+    {
+      icon: Shield,
+      title: 'Impersonation Protection',
+      desc: 'Prevent impersonation threats with advanced detection and monitoring.'
+    },
+    {
+      icon: Lock,
+      title: 'Takedown Services',
+      desc: 'Efficient removal of phishing websites and malicious content.'
+    },
+    {
+      icon: Server,
+      title: '24/7 Monitoring',
+      desc: 'Round-the-clock protection for your business assets.'
+    }
+  ]
 
   return (
-    <section className={`relative min-h-screen ${
-      theme === 'dark' 
-        ? 'bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900' 
-        : 'bg-gradient-to-b from-gray-100 via-purple-200 to-gray-100'
-    } overflow-hidden`}>
+    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
       <div className="absolute inset-0">
-        <div className={`absolute inset-0 bg-[url('data:image/svg+xml,...')] ${
-          theme === 'dark' ? 'opacity-30' : 'opacity-10'
-        } animate-slide bg-repeat`}></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide bg-repeat"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-48">
         <div className="text-center max-w-4xl mx-auto">
-          <h3 className={`${
-            theme === 'dark' ? 'text-purple-300' : 'text-purple-600'
-          } font-semibold mb-4 animate-fade-in`}>
+          <h3 className="text-purple-300 font-semibold mb-4 animate-fade-in">
             सुरक्षा हमारी प्राथमिकता
           </h3>
-          <h1 className={`text-4xl md:text-7xl font-bold mb-6 ${
-            theme === 'dark' ? 'text-white' : 'text-gray-900'
-          } leading-tight animate-slide-up`}>
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white leading-tight animate-slide-up">
             Secure Your Digital
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Future</span>
           </h1>
-          <p className={`text-lg ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          } mb-12 max-w-2xl mx-auto animate-fade-in-delay`}>
+          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-delay">
             Empowering Indian businesses with next-generation cybersecurity solutions. 
             From startups to enterprises, we protect what matters most.
           </p>
@@ -55,40 +65,16 @@ export function Hero() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
-            {[{
-              icon: Shield,
-              title: 'Impersonation Protection',
-              desc: 'Prevent impersonation threats with advanced detection and monitoring.'
-            }, {
-              icon: Lock,
-              title: 'Takedown Services',
-              desc: 'Efficient removal of phishing websites and malicious content.'
-            }, {
-              icon: Server,
-              title: '24/7 Monitoring',
-              desc: 'Round-the-clock protection for your business assets.'
-            }].map((item, i) => (
+            {features.map((item, i) => (
               <div 
                 key={i} 
-                className={`${
-                  theme === 'dark' 
-                    ? 'bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40' 
-                    : 'bg-white/50 border-purple-300/20 hover:border-purple-300/40'
-                } backdrop-blur-lg p-6 rounded-xl border transition-all`}
+                className="bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-xl border transition-all"
               >
-                <div className={`w-16 h-16 ${
-                  theme === 'dark' ? 'bg-purple-900/50' : 'bg-purple-100'
-                } rounded-xl flex items-center justify-center mx-auto mb-4`}>
-                  <item.icon className={`w-8 h-8 ${
-                    theme === 'dark' ? 'text-purple-300' : 'text-purple-600'
-                  }`} />
+                <div className="w-16 h-16 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-8 h-8 text-purple-300" />
                 </div>
-                <h3 className={`text-xl font-bold ${
-                  theme === 'dark' ? 'text-white' : 'text-gray-900'
-                } mb-2`}>{item.title}</h3>
-                <p className={
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                }>{item.desc}</p>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-300">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -102,13 +88,16 @@ export function Hero() {
             <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g className="wave-parallax">
-            <use href="#wave" x="48" y="0" fill={theme === 'dark' ? 'rgba(147, 51, 234, 0.7)' : 'rgba(147, 51, 234, 0.3)'} />
-            <use href="#wave" x="48" y="3" fill={theme === 'dark' ? 'rgba(147, 51, 234, 0.5)' : 'rgba(147, 51, 234, 0.2)'} />
-            <use href="#wave" x="48" y="5" fill={theme === 'dark' ? 'rgba(147, 51, 234, 0.3)' : 'rgba(147, 51, 234, 0.1)'} />
-            <use href="#wave" x="48" y="7" fill={theme === 'dark' ? 'rgba(147, 51, 234, 0.2)' : 'rgba(147, 51, 234, 0.05)'} />
+            <use href="#wave" x="48" y="0" fill="rgba(147, 51, 234, 0.7)" />
+            <use href="#wave" x="48" y="3" fill="rgba(147, 51, 234, 0.5)" />
+            <use href="#wave" x="48" y="5" fill="rgba(147, 51, 234, 0.3)" />
+            <use href="#wave" x="48" y="7" fill="rgba(147, 51, 234, 0.2)" />
           </g>
         </svg>
       </div>
+
+      {/* Add the Theme Toggle Component */}
+      <ThemeToggle />
 
       <style jsx>{`
         .waves {
@@ -132,38 +121,7 @@ export function Hero() {
           0% { transform: translate3d(-90px,0,0); }
           100% { transform: translate3d(85px,0,0); }
         }
-        
-        .animate-slide-up {
-          animation: slideUp 0.8s ease-out;
-        }
-        
-        .animate-fade-in {
-          animation: fadeIn 0.8s ease-out;
-        }
-        
-        .animate-fade-in-delay {
-          animation: fadeIn 0.8s ease-out 0.3s both;
-        }
-        
-        .animate-fade-in-delay-2 {
-          animation: fadeIn 0.8s ease-out 0.6s both;
-        }
-        
-        .animate-fade-in-delay-3 {
-          animation: fadeIn 0.8s ease-out 0.9s both;
-        }
-        
-        @keyframes slideUp {
-          from { transform: translateY(20px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
       `}</style>
     </section>
-  );
+  )
 }
-
