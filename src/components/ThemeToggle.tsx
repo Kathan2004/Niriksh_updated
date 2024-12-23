@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
+// src/components/ThemeToggle.tsx
+import React from 'react';
+import { useTheme } from '../hooks/useTheme';
 
-export function useTheme() {
-  const [isDark, setIsDark] = useState(true); // Force dark theme by default
+export function ThemeToggle() {
+  const { isDark, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    // Apply the dark theme to the document body
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark'); // Ensure 'dark' is set in localStorage
-
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
-  const toggleTheme = () => setIsDark((prev) => !prev); // This will allow you to toggle the theme
-
-  return { isDark, toggleTheme };
+  return (
+    <button onClick={toggleTheme} className="theme-toggle-btn">
+      {isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    </button>
+  );
 }
