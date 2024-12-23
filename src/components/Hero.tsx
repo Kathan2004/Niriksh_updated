@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { Shield, Lock, Server } from 'lucide-react'
-import { ThemeToggle } from './ThemeToggle'  // Import your ThemeToggle component
+import { ThemeToggle } from './ThemeToggle'
+import { useTheme } from '../hooks/useTheme'
 
 interface FeatureItem {
   icon: React.ElementType
@@ -11,6 +12,8 @@ interface FeatureItem {
 }
 
 export function Hero() {
+  const { isDark } = useTheme()
+
   const features: FeatureItem[] = [
     {
       icon: Shield,
@@ -30,21 +33,33 @@ export function Hero() {
   ]
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
+    <section className={`relative min-h-screen ${
+      isDark 
+        ? 'bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900' 
+        : 'bg-gradient-to-b from-gray-100 via-purple-200 to-gray-100'
+    } overflow-hidden`}>
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide bg-repeat"></div>
+        <div className={`absolute inset-0 bg-[url('data:image/svg+xml,...')] ${
+          isDark ? 'opacity-30' : 'opacity-10'
+        } animate-slide bg-repeat`}></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-48">
         <div className="text-center max-w-4xl mx-auto">
-          <h3 className="text-purple-300 font-semibold mb-4 animate-fade-in">
+          <h3 className={`${
+            isDark ? 'text-purple-300' : 'text-purple-600'
+          } font-semibold mb-4 animate-fade-in`}>
             सुरक्षा हमारी प्राथमिकता
           </h3>
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white leading-tight animate-slide-up">
+          <h1 className={`text-4xl md:text-7xl font-bold mb-6 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          } leading-tight animate-slide-up`}>
             Secure Your Digital
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Future</span>
           </h1>
-          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-delay">
+          <p className={`text-lg ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          } mb-12 max-w-2xl mx-auto animate-fade-in-delay`}>
             Empowering Indian businesses with next-generation cybersecurity solutions. 
             From startups to enterprises, we protect what matters most.
           </p>
@@ -68,13 +83,25 @@ export function Hero() {
             {features.map((item, i) => (
               <div 
                 key={i} 
-                className="bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-xl border transition-all"
+                className={`${
+                  isDark 
+                    ? 'bg-gray-800/50 border-purple-500/20 hover:border-purple-500/40' 
+                    : 'bg-white/50 border-purple-300/20 hover:border-purple-300/40'
+                } backdrop-blur-lg p-6 rounded-xl border transition-all`}
               >
-                <div className="w-16 h-16 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-purple-300" />
+                <div className={`w-16 h-16 ${
+                  isDark ? 'bg-purple-900/50' : 'bg-purple-100'
+                } rounded-xl flex items-center justify-center mx-auto mb-4`}>
+                  <item.icon className={`w-8 h-8 ${
+                    isDark ? 'text-purple-300' : 'text-purple-600'
+                  }`} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.desc}</p>
+                <h3 className={`text-xl font-bold ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                } mb-2`}>{item.title}</h3>
+                <p className={
+                  isDark ? 'text-gray-300' : 'text-gray-600'
+                }>{item.desc}</p>
               </div>
             ))}
           </div>
