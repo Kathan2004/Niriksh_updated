@@ -40,8 +40,8 @@ export function MobileBenefits() {
     <section className="py-12 bg-purple-50 dark:bg-gray-900">
       <div className="px-4">
         <SectionHeader
-          subtitle="निरीक्ष BENEFITS"
-          title="Why Choose Us"
+          title="निरीक्ष BENEFITS"
+        
           description="Comprehensive security for the digital age"
         />
         
