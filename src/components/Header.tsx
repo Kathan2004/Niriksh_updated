@@ -5,6 +5,15 @@ import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState("");
+
+  const handleMouseEnter = (url) => {
+    setPreviewUrl(url);
+  };
+
+  const handleMouseLeave = () => {
+    setPreviewUrl("");
+  };
 
   return (
     <header className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 rounded-b-3xl shadow-lg sticky top-0 z-50 transition-all">
@@ -18,57 +27,73 @@ export function Header() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Home
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Go to Home page
-              </div>
             </Link>
-            <Link to="/about" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/about" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/about")} 
+              onMouseLeave={handleMouseLeave}
+            >
               About
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Learn more about us
-              </div>
             </Link>
-            <Link to="/services" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/services" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/services")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Services
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Explore our services
-              </div>
             </Link>
-            <Link to="/features" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/features" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/features")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Features
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Discover key features
-              </div>
             </Link>
-            <Link to="/blog" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/blog" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/blog")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Blog
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Read our latest blogs
-              </div>
             </Link>
-            <Link to="/contact" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/contact" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/contact")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Contact
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Get in touch with us
-              </div>
             </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
-            <Link to="/login" className="relative text-white hover:text-gray-300 transition-colors group">
+            <Link 
+              to="/login" 
+              className="relative text-white hover:text-gray-300 transition-colors"
+              onMouseEnter={() => handleMouseEnter("/login")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Login
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Access your account
-              </div>
             </Link>
-            <Link to="/contact" className="relative bg-white text-purple-600 hover:bg-gray-200 px-4 py-2 rounded-lg shadow-md transition-all group">
+            <Link 
+              to="/contact" 
+              className="relative bg-white text-purple-600 hover:bg-gray-200 px-4 py-2 rounded-lg shadow-md transition-all"
+              onMouseEnter={() => handleMouseEnter("/contact")} 
+              onMouseLeave={handleMouseLeave}
+            >
               Request Demo
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Request a product demo
-              </div>
             </Link>
           </div>
 
@@ -86,58 +111,78 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 bg-white shadow-lg rounded-lg mt-4">
             <nav className="flex flex-col gap-4">
-              <Link to="/" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Home
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Go to Home page
-                </div>
               </Link>
-              <Link to="/about" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/about" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/about")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 About
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Learn more about us
-                </div>
               </Link>
-              <Link to="/services" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/services" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/services")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Services
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Explore our services
-                </div>
               </Link>
-              <Link to="/features" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/features" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/features")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Features
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Discover key features
-                </div>
               </Link>
-              <Link to="/blog" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/blog" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/blog")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Blog
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Read our latest blogs
-                </div>
               </Link>
-              <Link to="/contact" className="relative text-gray-600 hover:text-purple-600 transition-colors group">
+              <Link 
+                to="/contact" 
+                className="text-gray-600 hover:text-purple-600 transition-colors"
+                onMouseEnter={() => handleMouseEnter("/contact")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Contact
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Get in touch with us
-                </div>
-              </Link>
-              <Link to="/login" className="relative text-purple-600 hover:text-purple-700 transition-colors group">
-                Login
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Access your account
-                </div>
-              </Link>
-              <Link to="/signup" className="relative bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors group">
-                Sign Up
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Join us today
-                </div>
               </Link>
             </nav>
           </div>
         )}
       </div>
+
+      {/* Preview Window */}
+      {previewUrl && (
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-72 h-40 rounded-lg shadow-xl z-50 overflow-hidden transition-all"
+          style={{
+            backgroundColor: 'rgba(128, 0, 128, 0.1)',  // Light purple translucent background
+            border: '1px solid rgba(128, 0, 128, 0.3)',  // Slightly darker purple border
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',  // Subtle shadow for 3D effect
+          }}
+        >
+          <iframe
+            src={previewUrl}
+            title="Page Preview"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            className="w-full h-full rounded-lg"
+          ></iframe>
+        </div>
+      )}
     </header>
   );
 }
@@ -158,17 +203,21 @@ export function Hero() {
             </p>
             
             <div className="flex justify-center gap-4 mt-8">
-              <Link to="/services" className="relative bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-700 dark:hover:bg-purple-600 transition-all group">
+              <Link 
+                to="/services" 
+                className="bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-700 dark:hover:bg-purple-600 transition-all"
+                onMouseEnter={() => handleMouseEnter("/services")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Get Started
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Start using our tool
-                </div>
               </Link>
-              <Link to="/contact" className="relative bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-full px-6 py-3 transition-all group">
+              <Link 
+                to="/contact" 
+                className="bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-full px-6 py-3 transition-all"
+                onMouseEnter={() => handleMouseEnter("/contact")} 
+                onMouseLeave={handleMouseLeave}
+              >
                 Contact Us
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-max p-2 mt-2 bg-white text-black text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Get in touch with us
-                </div>
               </Link>
             </div>
           </div>
