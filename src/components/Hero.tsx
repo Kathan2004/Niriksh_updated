@@ -3,7 +3,7 @@ import { Shield, Lock, Server } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
 export function Hero() {
-  const { isDark } = useTheme();
+  const { isDark } = useTheme(); // Dynamically updates based on the global theme toggle
 
   return (
     <section className={`relative min-h-screen ${
@@ -36,7 +36,7 @@ export function Hero() {
             Empowering Indian businesses with next-generation cybersecurity solutions. 
             From startups to enterprises, we protect what matters most.
           </p>
-          
+
           <div className="flex flex-col md:flex-row gap-6 justify-center mb-16 animate-fade-in-delay-2">
             <button 
               onClick={() => window.location.href = '/contact'}
