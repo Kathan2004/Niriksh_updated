@@ -26,7 +26,7 @@ export function Hero() {
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Advanced Protection</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
-                  AI-powered threat detection and response system built for Indian enterprises
+                  AI-powered impersonation detection and response system built for Indian enterprises
                 </p>
               </div>
 
@@ -36,7 +36,7 @@ export function Hero() {
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">24/7 Monitoring</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
-                  Round-the-clock security operations center staffed by expert analysts
+                  Round-the-clock security operations and takedown services center staffed by expert analysts
                 </p>
               </div>
 
