@@ -27,8 +27,8 @@ export function Hero() {
           <h1 className={`text-4xl md:text-7xl font-bold mb-6 ${
             isDark ? 'text-white' : 'text-gray-900'
           } leading-tight animate-slide-up`}>
-            Secure Your Digital
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Future</span>
+            Because Your Digital 
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Identity Matters</span>
           </h1>
           <p className={`text-lg ${
             isDark ? 'text-gray-300' : 'text-gray-600'
@@ -57,7 +57,7 @@ export function Hero() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-3">
-            {[
+            {[ 
               { 
                 icon: Shield, 
                 title: 'Impersonation Protection', 
