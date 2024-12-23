@@ -4,11 +4,11 @@ import { WaveAnimation } from './waves/WaveAnimation';
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden opacity-0 animate-fade-in">
+    <section className="relative overflow-hidden">
       <div className="py-12 md:py-20 bg-gradient-to-b from-white to-purple-50 dark:from-gray-900 dark:to-purple-900 transition-colors">
         <div className="container mx-auto px-4 pb-32">
           <div className="text-center max-w-4xl mx-auto">
-            <h3 className="text-purple-600 dark:text-purple-400 font-semibold mb-4 animate-fade-in">
+            <h3 className="text-purple-600 dark:text-purple-400 font-semibold mb-4">
               सुरक्षा हमारी प्राथमिकता
             </h3>
             <h1 className="text-3xl md:text-6xl font-bold mb-6 text-purple-600 dark:text-purple-400 leading-tight">
