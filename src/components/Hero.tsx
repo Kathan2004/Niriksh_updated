@@ -70,7 +70,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Animated Wave */}
+      {/* Wave Animation */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
           <defs>
