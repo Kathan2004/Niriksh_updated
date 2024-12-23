@@ -5,18 +5,23 @@ import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleMouseEnter = (url) => {
     setPreviewUrl(url);
   };
 
   const handleMouseLeave = () => {
-    setPreviewUrl("");
+    setPreviewUrl(null);
   };
 
   return (
-    <header className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 rounded-b-3xl shadow-lg sticky top-0 z-50 transition-all">
+    <header className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 rounded-b-3xl shadow-lg sticky top-0 z-50 transition-all"
+      style={{
+        background: 'rgba(128, 0, 128, 0.5)', // Translucent purple shade for both dark and light modes
+        backdropFilter: 'blur(10px)', // Soft blur effect for a glassmorphism look
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 py-4">
           <div className="flex items-center gap-2">
@@ -166,11 +171,11 @@ export function Header() {
 
       {/* Preview Window */}
       {previewUrl && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-72 h-40 rounded-lg shadow-xl z-50 overflow-hidden transition-all"
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-96 h-64 rounded-lg shadow-xl z-50 overflow-hidden transition-all"
           style={{
-            backgroundColor: 'rgba(128, 0, 128, 0.1)',  // Light purple translucent background
+            backgroundColor: 'rgba(128, 0, 128, 0.2)',  // Translucent purple background for dark mode
             border: '1px solid rgba(128, 0, 128, 0.3)',  // Slightly darker purple border
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',  // Subtle shadow for 3D effect
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',  // Subtle shadow for 3D effect
           }}
         >
           <iframe
@@ -213,7 +218,7 @@ export function Hero() {
               </Link>
               <Link 
                 to="/contact" 
-                className="bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-full px-6 py-3 transition-all"
+                className="bg-transparent border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-full hover:bg-purple-600 hover:text-white dark:hover:bg-purple-500 transition-all"
                 onMouseEnter={() => handleMouseEnter("/contact")} 
                 onMouseLeave={handleMouseLeave}
               >
