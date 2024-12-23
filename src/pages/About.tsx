@@ -24,7 +24,7 @@ export function About() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
                 <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">5+</h3>
-                <p className="text-gray-600 dark:text-gray-300">Clients Protected</p>
+                <p className="text-gray-600 dark:text-gray-300">Organisations Protected</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
                 <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">86.7 % </h3>
