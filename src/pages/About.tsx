@@ -23,11 +23,11 @@ export function About() {
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">500+</h3>
+                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">5+</h3>
                 <p className="text-gray-600 dark:text-gray-300">Clients Protected</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">99.9%</h3>
+                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">86.7 % </h3>
                 <p className="text-gray-600 dark:text-gray-300">Threat Detection</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
@@ -35,7 +35,7 @@ export function About() {
                 <p className="text-gray-600 dark:text-gray-300">Support</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">50+</h3>
+                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">10+</h3>
                 <p className="text-gray-600 dark:text-gray-300">Expert Team</p>
               </div>
             </div>
