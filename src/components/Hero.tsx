@@ -56,7 +56,7 @@ export function Hero() {
                 className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all dark:bg-gray-700/60 dark:border-purple-600/40"
               >
                 <div className="w-16 h-16 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-purple-400" />
+                  <item.icon className="w-8 h-8 text-purple-400 dark:text-purple-300" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 dark:text-white">{item.title}</h3>
                 <p className="text-gray-400 dark:text-gray-300">{item.desc}</p>
