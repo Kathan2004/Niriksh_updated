@@ -9,7 +9,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 transition-all"
       style={{
-        background: 'rgba(128, 0, 128, 0.6)', // Purple with translucency
+        background: linear-gradient(to bottom, #FFFFFF, #F3E8FF); /* Light mode */
+        background: linear-gradient(to bottom, #111827, #4C1D95); /* Dark mode */
+        
         backdropFilter: 'blur(10px)', // Glassmorphism effect
       }}
     >
