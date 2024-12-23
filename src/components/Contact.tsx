@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, MapPin } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
-import { WaveAnimation } from './waves/WaveAnimation';
+
 
 export function Contact(): JSX.Element {
   return (
