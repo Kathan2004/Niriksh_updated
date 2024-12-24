@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Shield, Phone, FileText, User } from 'lucide-react';
+import { Home, Shield, Phone, FileText, User, HelpCircle } from 'lucide-react';
 
 export function MobileNavigation() {
   const location = useLocation();
@@ -31,6 +31,16 @@ export function MobileNavigation() {
         </Link>
         
         <Link
+          to="/faq"
+          className={`flex flex-col items-center gap-1 ${
+            isActive('/faq') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
+          }`}
+        >
+          <HelpCircle className="w-6 h-6" />
+          <span className="text-xs">FAQ</span>
+        </Link>
+        
+        <Link
           to="/contact"
           className={`flex flex-col items-center gap-1 ${
             isActive('/contact') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
@@ -38,16 +48,6 @@ export function MobileNavigation() {
         >
           <Phone className="w-6 h-6" />
           <span className="text-xs">Contact</span>
-        </Link>
-        
-        <Link
-          to="/blog"
-          className={`flex flex-col items-center gap-1 ${
-            isActive('/blog') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
-          }`}
-        >
-          <FileText className="w-6 h-6" />
-          <span className="text-xs">Blog</span>
         </Link>
         
         <Link

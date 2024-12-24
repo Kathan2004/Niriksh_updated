@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -33,20 +34,20 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Threat Detection</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Security Monitoring</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Incident Response</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Security Consulting</a></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-purple-500 transition-colors">Threat Detection</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-purple-500 transition-colors">Security Monitoring</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-purple-500 transition-colors">Incident Response</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-purple-500 transition-colors">Security Consulting</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Contact</a></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-purple-500 transition-colors">About Us</Link></li>
+              <li><Link to="/faq" className="text-gray-400 hover:text-purple-500 transition-colors">FAQ</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-purple-500 transition-colors">Blog</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-purple-500 transition-colors">Contact</Link></li>
             </ul>
           </div>
           

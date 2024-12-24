@@ -7,7 +7,7 @@ import { Footer } from '../Footer';
 import { MobileFooter } from '../MobileFooter';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { PageWrapper } from './PageWrapper';
-import { HomeContent } from '../home/HomeContent';
+import { Home } from '../../pages/Home';
 import { About } from '../../pages/About';
 import { Services } from '../../pages/Services';
 import { Features } from '../../pages/Features';
@@ -15,10 +15,10 @@ import { Blog } from '../../pages/Blog';
 import { Contact } from '../Contact';
 import { Login } from '../../pages/Login';
 import { SignUp } from '../../pages/SignUp';
+import { FAQ } from '../../pages/FAQ';
 
 export function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const location = useLocation();
 
   return (
     <PageWrapper>
@@ -26,10 +26,11 @@ export function AppContent() {
         {isMobile ? <MobileHeader /> : <Header />}
         <main>
           <Routes>
-            <Route path="/" element={<HomeContent isMobile={isMobile} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/features" element={<Features />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
