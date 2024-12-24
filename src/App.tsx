@@ -19,6 +19,7 @@ import { Services } from './pages/Services';
 import { Features } from './pages/Features';
 import { Blog } from './pages/Blog';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { PageWrapper } from './components/layout/PageWrapper';
 
 function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -49,32 +50,24 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {isMobile ? <MobileHeader /> : <Header />}
-      <main className="relative">
-        <Routes>
-          <Route path="/" element={<HomeContent />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      </main>
-      {isMobile ? <MobileFooter /> : <Footer />}
-      {isMobile && <MobileNavigation />}
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-white/95 dark:bg-gray-900/95">
+        {isMobile ? <MobileHeader /> : <Header />}
+        <main>
+          <Routes>
+            <Route path="/" element={<HomeContent />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        </main>
+        {isMobile ? <MobileFooter /> : <Footer />}
+        {isMobile && isHomePage && <MobileNavigation />}
+      </div>
+    </PageWrapper>
   );
 }
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
-  );
-}
-
-export default App;
