@@ -7,7 +7,7 @@ interface PageWrapperProps {
 
 export function PageWrapper({ children }: PageWrapperProps) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-white dark:bg-gray-900">
       <ParticleNetwork />
       <div className="relative z-10 min-h-screen flex flex-col">
         {children}

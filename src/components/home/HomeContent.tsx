@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Hero } from '../Hero';
 import { MobileHero } from '../MobileHero';
 import { Benefits } from '../Benefits';
@@ -6,29 +7,17 @@ import { MobileBenefits } from '../MobileBenefits';
 import { WhyChooseUs } from '../WhyChooseUs';
 import { Reviews } from '../Reviews';
 import { Contact } from '../Contact';
+import { FAQSection } from '../FAQ/FAQSection';
 
-interface HomeContentProps {
-  isMobile: boolean;
-}
-
-export function HomeContent({ isMobile }: HomeContentProps) {
-  if (isMobile) {
-    return (
-      <>
-        <MobileHero />
-        <MobileBenefits />
-        <WhyChooseUs />
-        <Reviews />
-        <Contact />
-      </>
-    );
-  }
+export function HomeContent() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
     <>
-      <Hero />
-      <Benefits />
+      {isMobile ? <MobileHero /> : <Hero />}
+      {isMobile ? <MobileBenefits /> : <Benefits />}
       <WhyChooseUs />
+      <FAQSection />
       <Reviews />
       <Contact />
     </>
