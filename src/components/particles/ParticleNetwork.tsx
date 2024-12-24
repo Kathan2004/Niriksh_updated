@@ -60,7 +60,7 @@ export function ParticleNetwork() {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, baseSize, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.5)' : 'rgba(147, 51, 234, 0.3)';
+        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.3)' : 'rgba(147, 51, 234, 0.15)';
         ctx.fill();
 
         // Draw connections
@@ -70,13 +70,13 @@ export function ParticleNetwork() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.5;
+            const opacity = (1 - distance / connectionDistance) * (isDark ? 0.2 : 0.1);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = isDark 
               ? `rgba(147, 51, 234, ${opacity})` 
-              : `rgba(147, 51, 234, ${opacity * 0.6})`;
+              : `rgba(147, 51, 234, ${opacity})`;
             ctx.stroke();
           }
         }
@@ -98,7 +98,8 @@ export function ParticleNetwork() {
       className="fixed inset-0 pointer-events-none"
       style={{ 
         touchAction: 'none',
-        zIndex: 0
+        zIndex: 0,
+        opacity: 1
       }}
     />
   );

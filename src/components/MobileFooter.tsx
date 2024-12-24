@@ -4,7 +4,7 @@ import { Shield, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export function MobileFooter() {
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-24">
+    <footer className="bg-gray-900 text-white pt-12 pb-24 mt-auto">
       <div className="px-4">
         <div className="flex items-center gap-2 mb-6">
           <Shield className="w-8 h-8 text-purple-500" />

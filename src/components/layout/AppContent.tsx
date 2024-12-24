@@ -19,7 +19,6 @@ import { SignUp } from '../../pages/SignUp';
 export function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   return (
     <PageWrapper>
@@ -38,7 +37,7 @@ export function AppContent() {
           </Routes>
         </main>
         {isMobile ? <MobileFooter /> : <Footer />}
-        {isMobile && isHomePage && <MobileNavigation />}
+        {isMobile && <MobileNavigation />}
       </div>
     </PageWrapper>
   );

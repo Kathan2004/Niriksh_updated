@@ -9,7 +9,7 @@ export function PageWrapper({ children }: PageWrapperProps) {
   return (
     <div className="relative min-h-screen">
       <ParticleNetwork />
-      <div className="relative z-10">
+      <div className="relative z-10 min-h-screen flex flex-col">
         {children}
       </div>
     </div>
