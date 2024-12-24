@@ -3,6 +3,7 @@ import { Hero } from '../Hero';
 import { MobileHero } from '../MobileHero';
 import { Benefits } from '../Benefits';
 import { MobileBenefits } from '../MobileBenefits';
+import { MobileFooter } from '../MobileFooter';
 import { WhyChooseUs } from '../WhyChooseUs';
 import { Reviews } from '../Reviews';
 import { Contact } from '../Contact';
@@ -20,6 +21,7 @@ export function HomeContent({ isMobile }: HomeContentProps) {
         <WhyChooseUs />
         <Reviews />
         <Contact />
+        <MobileFooter/>
       </>
     );
   }
@@ -31,6 +33,7 @@ export function HomeContent({ isMobile }: HomeContentProps) {
       <WhyChooseUs />
       <Reviews />
       <Contact />
+      <MobileFooter/>
     </>
   );
 }
