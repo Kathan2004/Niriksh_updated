@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Home, Shield, Phone, FileText, User, HelpCircle, File } from 'lucide-react';
 
 export function MobileNavigation() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export function MobileNavigation() {
             isActive('/') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <Home className="w-6 h-6" />
           <span className="text-xs">Home</span>
         </Link>
 
@@ -26,6 +28,7 @@ export function MobileNavigation() {
             isActive('/services') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <Shield className="w-6 h-6" />
           <span className="text-xs">Services</span>
         </Link>
 
@@ -36,6 +39,7 @@ export function MobileNavigation() {
             isActive('/blog') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <File className="w-6 h-6" />
           <span className="text-xs">Blog</span>
         </Link>
 
@@ -46,6 +50,7 @@ export function MobileNavigation() {
             isActive('/faq') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <HelpCircle className="w-6 h-6" />
           <span className="text-xs">FAQ</span>
         </Link>
 
@@ -56,6 +61,7 @@ export function MobileNavigation() {
             isActive('/contact') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <Phone className="w-6 h-6" />
           <span className="text-xs">Contact</span>
         </Link>
 
@@ -66,6 +72,7 @@ export function MobileNavigation() {
             isActive('/login') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'
           }`}
         >
+          <User className="w-6 h-6" />
           <span className="text-xs">Account</span>
         </Link>
       </div>
