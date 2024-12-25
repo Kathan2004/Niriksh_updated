@@ -37,33 +37,38 @@ const benefits = [
 
 export function MobileBenefits() {
   return (
-    <section className="py-12 bg-purple-50 dark:bg-gray-900">
-      <div className="px-4">
+    <>
+      {/* Title */}
+      <div className="text-center relative z-10 mb-12">
         <SectionHeader
           title="निरीक्ष BENEFITS"
-        
           description="Comprehensive security for the digital age"
         />
-        
-        <div className="mt-8 space-y-4">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                  <benefit.icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{benefit.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                </div>
+      </div>
+
+      {/* Benefits List */}
+      <div className="relative z-10 space-y-6 max-w-4xl mx-auto">
+        {benefits.map((benefit, index) => (
+          <div
+            key={index}
+            className="bg-gradient-to-r from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 p-6 rounded-3xl shadow-xl backdrop-blur-lg transition-transform hover:scale-[1.03]"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center">
+                <benefit.icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
+                  {benefit.title}
+                </h3>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </>
   );
 }
