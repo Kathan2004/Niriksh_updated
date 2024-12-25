@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { User, Mail, Lock, Shield } from 'lucide-react';
 
 export function SignUp() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 2000); // Time decreased to 2 seconds
+
+    return () => clearInterval(timer);
+  }, [activeIndex]);
+
+  const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveIndex((prev) => (prev + 1) % reviews.length);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-purple-900 flex items-center justify-center py-12 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-gray-900/50 dark:to-gray-800/70 flex items-center justify-center py-12 px-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute w-96 h-96 -top-48 -right-48 bg-purple-500/10 dark:bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-xl animate-blob"></div>
@@ -130,14 +155,8 @@ export function SignUp() {
           right: 0;
           bottom: 0;
           background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h80v80h-80z' fill='none' stroke='%23purple' stroke-width='1'/%3E%3Cpath d='M30 30h40v40h-40z' fill='none' stroke='%23purple' stroke-width='1'/%3E%3Cpath d='M10 50h20M70 50h20M50 10v20M50 70v20' stroke='%23purple' stroke-width='1'/%3E%3C/svg%3E");
-          background-size: 50px 50px;
-          animation: circuit 20s linear infinite;
-          transform: translateZ(0);
-        }
-
-        @keyframes circuit {
-          0% { background-position: 0 0; }
-          100% { background-position: 50px 50px; }
+          background-repeat: no-repeat;
+          background-size: cover;
         }
       `}</style>
     </div>

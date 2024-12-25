@@ -3,8 +3,20 @@ import { Shield, Users, Target, Globe } from 'lucide-react';
 
 export function About() {
   return (
-    <div className="py-16 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4">
+    <div className="py-16 bg-gradient-to-br from-purple-100/50 to-white/60 dark:from-purple-900/50 dark:to-gray-800/60 flex items-center justify-center py-12 px-4 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-96 h-96 -top-48 -left-48 bg-purple-500/10 dark:bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-xl animate-blob"></div>
+        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-xl animate-blob animation-delay-2000"></div>
+        <div className="absolute w-96 h-96 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-500/10 dark:bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-xl animate-blob animation-delay-4000"></div>
+      </div>
+
+      {/* Glowing Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="binary-rain"></div>
+      </div>
+
+      <div className="max-w-6xl w-full backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-2xl p-8 relative z-10">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About निरीक्ष</h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -27,7 +39,7 @@ export function About() {
                 <p className="text-gray-600 dark:text-gray-300">Organisations Protected</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">
-                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">86.7 % </h3>
+                <h3 className="font-semibold text-purple-600 dark:text-purple-400 mb-2">86.7 %</h3>
                 <p className="text-gray-600 dark:text-gray-300">Threat Detection</p>
               </div>
               <div className="bg-purple-50 dark:bg-gray-800 p-4 rounded-lg">

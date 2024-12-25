@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SearchFAQ } from './SearchFAQ';
 import { FAQTabs } from './FAQTabs';
 import { FAQList } from './FAQList';
-import { faqData } from './FAQData';
+import { faqData } from './faqData';
 
 export function FAQSection() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -18,9 +18,12 @@ export function FAQSection() {
   });
 
   return (
-    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-purple-900/50 dark:to-gray-900/50 backdrop-blur-md">
+    <section
+      className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-gray-900/50 dark:to-purple-900/50"
+      id="faq-section"
+    >
       {/* Title */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 relative z-10">
         <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text">
           Frequently Asked Questions
         </h2>
@@ -30,7 +33,7 @@ export function FAQSection() {
       </div>
 
       {/* Search Bar and Filters Positioned Below Title */}
-      <div className="flex justify-center items-center gap-4 mb-12">
+      <div className="flex justify-center items-center gap-4 mb-12 relative z-10">
         <div className="flex-1 max-w-xl">
           <SearchFAQ searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </div>
@@ -38,7 +41,7 @@ export function FAQSection() {
       </div>
 
       {/* FAQ List */}
-      <div className="max-w-4xl mx-auto p-6 bg-white/50 dark:bg-gray-800/50 rounded-3xl backdrop-blur-lg shadow-xl">
+      <div className="max-w-4xl mx-auto p-6 bg-transparent rounded-3xl shadow-xl relative z-10">
         <FAQList faqs={filteredFAQs} />
       </div>
     </section>

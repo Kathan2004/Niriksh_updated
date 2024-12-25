@@ -12,7 +12,7 @@ interface ReviewCardProps {
 
 export function ReviewCard({ name, role, company, review, rating, image }: ReviewCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl relative transform transition-all duration-300 hover:scale-[1.02]">
+    <div className="bg-gradient-to-b from-purple-50/80 to-white/60 dark:from-gray-900/60 dark:to-gray-800/70 rounded-2xl p-8 shadow-xl relative transform transition-all duration-300 hover:scale-[1.02] hover:bg-gradient-to-b hover:from-purple-50/90 hover:to-white/80 dark:hover:from-gray-900/80 dark:hover:to-gray-800/80">
       <div className="absolute top-6 right-8">
         <Quote className="w-12 h-12 text-purple-100 dark:text-gray-700 transform rotate-180" />
       </div>

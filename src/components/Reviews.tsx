@@ -44,7 +44,7 @@ export function Reviews() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 2000); // Time decreased to 2 seconds
 
     return () => clearInterval(timer);
   }, [activeIndex]);
@@ -64,7 +64,7 @@ export function Reviews() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section className="py-20 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-gray-900/50 dark:to-gray-800/70">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="CLIENT TESTIMONIALS"
@@ -89,23 +89,6 @@ export function Reviews() {
                 ))}
               </div>
             </div>
-
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4">
-              <button
-                onClick={prevSlide}
-                className="w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors"
-                disabled={isAnimating}
-              >
-                <span className="text-2xl text-purple-600 dark:text-purple-400">←</span>
-              </button>
-              <button
-                onClick={nextSlide}
-                className="w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors"
-                disabled={isAnimating}
-              >
-                <span className="text-2xl text-purple-600 dark:text-purple-400">→</span>
-              </button>
-            </div>
           </div>
 
           <div className="flex justify-center mt-8 gap-3">
@@ -129,7 +112,6 @@ export function Reviews() {
           </div>
         </div>
       </div>
-      
     </section>
   );
 }
