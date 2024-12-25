@@ -10,10 +10,11 @@ export function WhyChooseUsSection() {
 
   return (
     <section
-      className="py-16 md:py-32 bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-purple-900 relative overflow-hidden transition-colors"
+      className="py-16 md:py-32 bg-gradient-to-b from-transparent to-transparent dark:from-transparent dark:to-transparent relative overflow-hidden transition-colors"
       id="why-choose-us"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 to-white/50 dark:from-gray-900/50 dark:to-purple-900/50 backdrop-blur-sm" />
+      {/* Removed background gradient and blur */}
+      <div className="absolute inset-0 bg-transparent" />
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           subtitle="WHY CHOOSE US"
