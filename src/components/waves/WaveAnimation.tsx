@@ -23,7 +23,7 @@ export function WaveAnimation({ color, className = '' }: WaveAnimationProps) {
 
       <style>{`
         .wave-path {
-          animation: waveFlow 3s ease-in-out infinite alternate;
+          animation: waveFlow 2s ease-in-out infinite alternate;
           transform-origin: center;
         }
 
