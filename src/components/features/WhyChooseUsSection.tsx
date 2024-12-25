@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SectionHeader } from '../SectionHeader';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { MobileWhyChooseUs } from '../mobile/MobileWhyChooseUs';
@@ -8,7 +8,7 @@ export function WhyChooseUsSection() {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-900 transition-colors" id="why-choose-us">
+    <section className="py-16 bg-gradient-to-r from-white/50 to-purple-50/50 dark:from-gray-800/50 dark:to-gray-900/50 backdrop-blur-md transition-colors" id="why-choose-us">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="WHY CHOOSE US"
@@ -16,7 +16,11 @@ export function WhyChooseUsSection() {
           description="In today's connected world, cybersecurity is more than protection—it's empowerment."
         />
         
-        {isMobile ? <MobileWhyChooseUs /> : <DesktopWhyChooseUs />}
+        {isMobile ? (
+          <MobileWhyChooseUs />
+        ) : (
+          <DesktopWhyChooseUs />
+        )}
       </div>
     </section>
   );
