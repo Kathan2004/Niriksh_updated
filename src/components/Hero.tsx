@@ -5,7 +5,7 @@ import { WaveAnimation } from './waves/WaveAnimation';
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="py-12 md:py-20 bg-gradient-to-b from-white to-purple-50 dark:from-gray-900 dark:to-purple-900 transition-colors">
+      <div className="py-12 md:py-20 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50 transition-colors">
         <div className="container mx-auto px-4 pb-32">
           <div className="text-center max-w-4xl mx-auto">
             <h3 className="text-purple-600 dark:text-purple-400 font-semibold mb-4">
@@ -37,7 +37,7 @@ export function Hero() {
 
             {/* Feature Boxes */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-16">
-              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all backdrop-blur-lg hover:bg-purple-50 dark:hover:bg-purple-900/80">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all hover:bg-purple-50 dark:hover:bg-purple-900/80">
                 <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                 </div>
@@ -47,7 +47,7 @@ export function Hero() {
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all backdrop-blur-lg hover:bg-purple-50 dark:hover:bg-purple-900/80">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all hover:bg-purple-50 dark:hover:bg-purple-900/80">
                 <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Lock className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                 </div>
@@ -57,7 +57,7 @@ export function Hero() {
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all backdrop-blur-lg hover:bg-purple-50 dark:hover:bg-purple-900/80">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all hover:bg-purple-50 dark:hover:bg-purple-900/80">
                 <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Server className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                 </div>

@@ -1,24 +1,22 @@
 import React from 'react';
 import { Shield, Lock, Server } from 'lucide-react';
 
-
 export function MobileHero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-b from-white to-purple-50 dark:from-gray-900 dark:to-purple-900 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide bg-repeat"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 pt-20 pb-32">
         <div className="text-center max-w-full">
-          <h3 className="text-purple-400 font-semibold mb-2 animate-fade-in text-sm">
+          <h3 className="text-purple-600 dark:text-purple-400 font-semibold mb-4 animate-fade-in text-sm">
             सुरक्षा हमारी प्राथमिकता
           </h3>
-          <h1 className="text-3xl font-bold mb-4 text-white leading-snug animate-slide-up">
-            Secure Your Digital
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"> Future</span>
+          <h1 className="text-3xl font-bold mb-6 text-purple-600 dark:text-purple-400 leading-tight animate-slide-up">
+            Because Your Digital Identity Matters
           </h1>
-          <p className="text-sm text-gray-300 mb-8 animate-fade-in-delay">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-delay">
             Empowering Indian businesses with next-generation cybersecurity solutions.
           </p>
 
@@ -31,14 +29,14 @@ export function MobileHero() {
             </button>
             <button 
               onClick={() => window.location.href = '/about'}
-              className="w-full max-w-xs px-6 py-3 bg-transparent border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-lg transform hover:scale-105 transition-all"
+              className="w-full max-w-xs px-6 py-3 bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
             >
               Learn More
             </button>
           </div>
 
           <div className="grid grid-cols-1 gap-6 animate-fade-in-delay-3">
-            {[
+            {[ 
               { 
                 icon: Shield, 
                 title: 'Impersonation Protection', 
@@ -57,13 +55,15 @@ export function MobileHero() {
             ].map((item, i) => (
               <div 
                 key={i} 
-                className="bg-gray-800/50 backdrop-blur-lg p-4 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all"
+                className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all hover:bg-purple-50 dark:hover:bg-purple-900/80 border border-purple-100/50 dark:border-purple-900/50 hover:border-purple-300 dark:hover:border-purple-700"
               >
-                <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <item.icon className="w-6 h-6 text-purple-400" />
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <item.icon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
-                <p className="text-xs text-gray-400">{item.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">{item.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>

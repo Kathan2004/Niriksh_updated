@@ -24,7 +24,7 @@ export function FeatureGrid({ features }: { features: FeatureProps[] }) {
             ease: [0.22, 1, 0.36, 1]
           }}
         >
-          <div className="group h-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300 border border-purple-100/50 dark:border-purple-900/50 hover:border-purple-300 dark:hover:border-purple-700">
+          <div className="group h-full bg-white/50 dark:bg-gray-800/50 rounded-2xl p-6 hover:bg-purple-50 dark:hover:bg-purple-900/80 transition-all duration-300 border border-purple-100/50 dark:border-purple-900/50 hover:border-purple-300 dark:hover:border-purple-700">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 dark:from-purple-600 dark:to-indigo-800 p-0.5">
                 <div className="w-full h-full bg-white dark:bg-gray-900 rounded-[10px] flex items-center justify-center">
