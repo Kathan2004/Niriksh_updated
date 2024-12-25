@@ -10,7 +10,7 @@ export function WhyChooseUsSection() {
 
   return (
     <section
-      className="group h-full bg-white/50 dark:bg-gray-800/50 rounded-2xl p-6 hover:bg-purple-50 dark:hover:bg-purple-900/80 transition-all duration-300 border border-purple-100/50 dark:border-purple-900/50 hover:border-purple-300 dark:hover:border-purple-700"
+      className="py-16 md:py-32 bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-purple-900 relative overflow-hidden transition-colors"
       id="why-choose-us"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 to-white/50 dark:from-gray-900/50 dark:to-purple-900/50 backdrop-blur-sm" />
