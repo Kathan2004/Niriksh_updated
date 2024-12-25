@@ -15,8 +15,8 @@ export function Hero() {
               Because Your Digital Identity Matters
             </h1>
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-              Empowering Indian businesses with next-generation cybersecurity solutions. 
-              From startups to enterprises, we protect what matters most.
+              Empowering Indian enterprises with cutting-edge cybersecurity solutions.
+From tackling impersonations to executing red team simulations, we safeguard what matters most.
             </p>
 
             {/* Action Buttons */}
