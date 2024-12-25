@@ -10,7 +10,7 @@ export function WhyChooseUsSection() {
 
   return (
     <section
-      className="py-16 bg-gradient-to-r from-white/50 to-purple-50/50 dark:from-gray-800/50 dark:to-gray-900/50 transition-colors"
+      className="py-16 bg-white/50 dark:bg-gray-800/50 transition-colors"
       id="why-choose-us"
     >
       <div className="container mx-auto px-4">
@@ -31,6 +31,7 @@ export function WhyChooseUsSection() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
+          {/* Matching layout and design for mobile and desktop versions */}
           {isMobile ? (
             <MobileWhyChooseUs />
           ) : (
