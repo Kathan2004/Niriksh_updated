@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
 import { BlogCard } from '../components/BlogCard';
-import { BlogContent } from '../components/BlogContent';
 import { Modal } from '../components/Modal';
 
 const posts = [
-  {
+ {
     title: 'The Evolution of Zero Trust Security in Modern Enterprise',
     excerpt: 'An in-depth exploration of Zero Trust architecture and its transformative impact on organizational security posture.',
     content: `Zero Trust security represents a paradigm shift in how organizations approach cybersecurity. Unlike traditional perimeter-based security models, Zero Trust operates on the principle of "never trust, always verify." This approach has become increasingly crucial in today's digital landscape where the concept of a network perimeter has become increasingly blurred.
@@ -347,6 +346,7 @@ Building a resilient cloud security architecture requires a comprehensive approa
   }
 ];
 
+
 export function Blog() {
   const [selectedPost, setSelectedPost] = useState<typeof posts[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -357,7 +357,9 @@ export function Blog() {
   };
 
   return (
-    <div className="py-16 bg-white dark:bg-gray-900">
+    <div
+      className="py-16 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50"
+    >
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="LATEST INSIGHTS"
@@ -382,7 +384,22 @@ export function Blog() {
             setSelectedPost(null);
           }}
         >
-          {selectedPost && <BlogContent {...selectedPost} />}
+          {selectedPost && (
+            <div className="p-6 space-y-4 text-gray-800 dark:text-gray-100">
+              <h2 className="text-2xl font-bold">{selectedPost.title}</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                By {selectedPost.author} | {selectedPost.date} | {selectedPost.readTime}
+              </p>
+              <img
+                src={selectedPost.image}
+                alt={selectedPost.title}
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
+              <article className="prose prose-lg dark:prose-invert max-w-none">
+                {selectedPost.content}
+              </article>
+            </div>
+          )}
         </Modal>
       </div>
     </div>
