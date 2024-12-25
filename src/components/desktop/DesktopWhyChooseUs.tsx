@@ -5,10 +5,10 @@ export function DesktopWhyChooseUs() {
   const [selectedFeature, setSelectedFeature] = useState(features[0]);
 
   return (
-    <div className="relative z-10 p-8 rounded-3xl bg-gradient-to-r from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 shadow-xl backdrop-blur-lg">
-      <div className="grid md:grid-cols-5 gap-6">
+    <div className="relative z-10 p-8 rounded-3xl bg-gradient-to-b from-purple-50/60 to-white/60 dark:from-gray-800/50 dark:to-gray-900/50 shadow-xl backdrop-blur-lg">
+      <div className="grid md:grid-cols-12 gap-6">
         {/* Feature List */}
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-span-4 lg:col-span-3">
           {features.map((feature) => (
             <button
               key={feature.id}
@@ -26,7 +26,7 @@ export function DesktopWhyChooseUs() {
         </div>
 
         {/* Selected Feature Details */}
-        <div className="md:col-span-4 bg-gradient-to-r from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 p-6 rounded-3xl shadow-xl backdrop-blur-lg">
+        <div className="md:col-span-8 lg:col-span-9 bg-gradient-to-b from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 p-6 rounded-3xl shadow-xl backdrop-blur-lg">
           <div className="flex items-center gap-4 mb-4">
             <selectedFeature.icon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
