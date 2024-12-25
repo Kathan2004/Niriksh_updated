@@ -10,11 +10,11 @@ export function WhyChooseUsSection() {
 
   return (
     <section
-      className="py-16 md:py-32 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-purple-900/50 dark:to-purple-900/60 relative overflow-hidden transition-colors"
+      className="py-16 md:py-32 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50 relative overflow-hidden transition-colors"
       id="why-choose-us"
     >
-      {/* Applying the gradient to the background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-purple-900/50 dark:to-purple-900/60" />
+      {/* Same gradient background as Hero section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50" />
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           subtitle="WHY CHOOSE US"
