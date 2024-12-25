@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SearchFAQ } from './SearchFAQ';
 import { FAQTabs } from './FAQTabs';
 import { FAQList } from './FAQList';
-import { faqData } from './faqData';
+import { faqData } from './FAQData';
 
 export function FAQSection() {
   const [activeCategory, setActiveCategory] = useState('all');

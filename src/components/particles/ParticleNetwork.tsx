@@ -1,13 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-}
-
 export function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { isDark } = useTheme();
@@ -16,7 +9,7 @@ export function ParticleNetwork() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -35,18 +28,35 @@ export function ParticleNetwork() {
     window.addEventListener('resize', resizeCanvas);
 
     const particleCount = 50;
-    const particles: Particle[] = [];
-    const connectionDistance = 100;
-    const baseSize = 3;
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+    }> = [];
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 1,
-        vy: (Math.random() - 0.5) * 1
+        vy: (Math.random() - 0.5) * 1,
+        size: Math.random() * 2 + 1
       });
     }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let isMouseMoving = false;
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+      isMouseMoving = true;
+      setTimeout(() => isMouseMoving = false, 100);
+    });
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -58,9 +68,21 @@ export function ParticleNetwork() {
         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
+        if (isMouseMoving) {
+          const dx = mouseX - particle.x;
+          const dy = mouseY - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            const angle = Math.atan2(dy, dx);
+            particle.vx -= Math.cos(angle) * 0.2;
+            particle.vy -= Math.sin(angle) * 0.2;
+          }
+        }
+
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, baseSize, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.4)' : 'rgba(147, 51, 234, 0.2)';
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.5)' : 'rgba(147, 51, 234, 0.3)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -68,14 +90,12 @@ export function ParticleNetwork() {
           const dy = particles[j].y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * (isDark ? 0.3 : 0.15);
+          if (distance < 150) {
+            const opacity = (1 - distance / 150) * (isDark ? 0.4 : 0.2);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = isDark 
-              ? `rgba(147, 51, 234, ${opacity})` 
-              : `rgba(147, 51, 234, ${opacity})`;
+            ctx.strokeStyle = `rgba(147, 51, 234, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -97,9 +117,13 @@ export function ParticleNetwork() {
       ref={canvasRef}
       className="fixed inset-0 w-full h-full"
       style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'auto',
         zIndex: 0,
-        pointerEvents: 'none',
-        mixBlendMode: 'multiply'
+        opacity: 0.8,
+        mixBlendMode: 'screen'
       }}
     />
   );

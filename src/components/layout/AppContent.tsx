@@ -16,27 +16,61 @@ import { Contact } from '../Contact';
 import { Login } from '../../pages/Login';
 import { SignUp } from '../../pages/SignUp';
 import { FAQ } from '../../pages/FAQ';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const location = useLocation();
+
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.98
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    },
+    exit: {
+      opacity: 0,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-white/95 dark:bg-gray-900/95">
+      <div className="min-h-screen">
         {isMobile ? <MobileHeader /> : <Header />}
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </main>
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={location.pathname}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="relative"
+          >
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          </motion.main>
+        </AnimatePresence>
         {isMobile ? <MobileFooter /> : <Footer />}
         {isMobile && <MobileNavigation />}
       </div>
