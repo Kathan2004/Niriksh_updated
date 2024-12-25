@@ -19,7 +19,7 @@ export function FAQSection() {
 
   return (
     <section
-      className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-gray-900/50 dark:to-purple-900/50"
+      className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50 transition-colors"
       id="faq-section"
     >
       {/* Title */}

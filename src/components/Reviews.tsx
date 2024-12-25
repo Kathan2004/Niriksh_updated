@@ -40,14 +40,18 @@ const reviews = [
 export function Reviews() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isPaused, setIsPaused] = useState(false); // State to track pause status
 
   useEffect(() => {
+    // Set interval for slideshow (1.5 seconds)
     const timer = setInterval(() => {
-      nextSlide();
-    }, 2000); // Time decreased to 2 seconds
+      if (!isPaused) {
+        nextSlide(); // Change to the next slide
+      }
+    }, 1500); // Time set to 1.5 seconds
 
-    return () => clearInterval(timer);
-  }, [activeIndex]);
+    return () => clearInterval(timer); // Clean up the interval on component unmount
+  }, [activeIndex, isPaused]); // Re-run effect on activeIndex or isPaused change
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -63,8 +67,12 @@ export function Reviews() {
     setTimeout(() => setIsAnimating(false), 500);
   };
 
+  const handleSlideClick = () => {
+    setIsPaused(!isPaused); // Toggle pause status on click
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-b from-purple-100/50 to-white/60 dark:from-gray-900/50 dark:to-gray-800/70">
+    <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50 transition-colors">
       <div className="container mx-auto px-4">
         <SectionHeader
           subtitle="CLIENT TESTIMONIALS"
@@ -74,7 +82,7 @@ export function Reviews() {
         
         <div className="mt-16 relative">
           <div className="max-w-4xl mx-auto">
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden" onClick={handleSlideClick}> {/* Toggle pause on click */}
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${activeIndex * 100}%)` }}

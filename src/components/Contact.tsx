@@ -4,8 +4,8 @@ import { SectionHeader } from './SectionHeader';
 
 export function Contact(): JSX.Element {
   return (
-    <section className="relative py-16 bg-gradient-to-b from-purple-100 to-purple-50 dark:from-gray-900 dark:to-purple-900 overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="relative py-16 px-6 md:px-12 bg-gradient-to-b from-white/50 to-purple-50/50 dark:from-gray-900/50 dark:to-purple-900/50 overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           subtitle="संपर्क करें"
           title="Get in Touch"
