@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Shield, Target, Cpu, Globe, Eye } from 'lucide-react';
 import { MobileFeatureCard } from './MobileFeatureCard';
 import { features } from '../../data/features';
 

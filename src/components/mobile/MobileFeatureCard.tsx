@@ -19,46 +19,48 @@ export function MobileFeatureCard({
   points,
   image,
   isExpanded,
-  onToggle
+  onToggle,
 }: MobileFeatureCardProps) {
   return (
-    <div className="bg-purple-50 dark:bg-gray-800 rounded-xl overflow-hidden">
+    <div className="relative z-10 bg-gradient-to-r from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 rounded-2xl shadow-lg backdrop-blur-lg overflow-hidden transition-transform transform hover:scale-105">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-4 text-left"
+        className="w-full flex items-center justify-between p-4 text-left transition-colors duration-300"
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center">
-            <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <div className="w-12 h-12 bg-purple-100/60 dark:bg-purple-900/50 rounded-lg flex items-center justify-center">
+            <Icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
           </div>
-          <h3 className="font-semibold text-gray-900 dark:text-white">{title}</h3>
+          <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
+            {title}
+          </h3>
         </div>
         {isExpanded ? (
-          <ChevronUp className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <ChevronUp className="w-6 h-6 text-purple-600 dark:text-purple-400" />
         ) : (
-          <ChevronDown className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <ChevronDown className="w-6 h-6 text-purple-600 dark:text-purple-400" />
         )}
       </button>
 
       {isExpanded && (
-        <div className="p-4 pt-0 space-y-4">
+        <div className="p-4 pt-0 space-y-6">
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             {description}
           </p>
-          
+
           <img
             src={image}
             alt={title}
-            className="w-full h-48 object-cover rounded-lg"
+            className="w-full h-48 object-cover rounded-lg shadow-md"
           />
-          
-          <ul className="grid grid-cols-2 gap-2">
+
+          <ul className="grid grid-cols-2 gap-4">
             {points.map((point, index) => (
               <li
                 key={index}
-                className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-700 p-2 rounded-lg"
+                className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 bg-gradient-to-r from-white/60 to-purple-50/60 dark:from-gray-800/50 dark:to-gray-900/50 p-3 rounded-lg shadow-sm"
               >
-                <div className="w-1.5 h-1.5 bg-purple-600 dark:bg-purple-400 rounded-full flex-shrink-0" />
+                <div className="w-2 h-2 bg-purple-600 dark:bg-purple-400 rounded-full flex-shrink-0" />
                 <span>{point}</span>
               </li>
             ))}
