@@ -27,7 +27,7 @@ export function ParticleNetwork() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const particleCount = 50;
+    const particleCount = 100; // Increased particle count network thick dikhega
     const particles: Array<{
       x: number;
       y: number;
@@ -42,7 +42,7 @@ export function ParticleNetwork() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 1,
         vy: (Math.random() - 0.5) * 1,
-        size: Math.random() * 2 + 1
+        size: Math.random() * 3 + 2 // Larger particle size
       });
     }
 
@@ -73,16 +73,16 @@ export function ParticleNetwork() {
           const dy = mouseY - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
+          if (distance < 150) { // interaction radius bada
             const angle = Math.atan2(dy, dx);
-            particle.vx -= Math.cos(angle) * 0.2;
-            particle.vy -= Math.sin(angle) * 0.2;
+            particle.vx -= Math.cos(angle) * 0.4; // Stronger push
+            particle.vy -= Math.sin(angle) * 0.4;
           }
         }
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.5)' : 'rgba(147, 51, 234, 0.3)';
+        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.8)' : 'rgba(147, 51, 234, 0.6)'; // Increased opacity
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -91,12 +91,12 @@ export function ParticleNetwork() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 150) {
-            const opacity = (1 - distance / 150) * (isDark ? 0.4 : 0.2);
+            const opacity = (1 - distance / 150) * (isDark ? 0.6 : 0.4); // Enhanced visibility
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(147, 51, 234, ${opacity})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 1.5; // lines ko thicken kiya
             ctx.stroke();
           }
         }
@@ -122,8 +122,8 @@ export function ParticleNetwork() {
         left: 0,
         pointerEvents: 'auto',
         zIndex: -1,
-        opacity: 0.8,
-        mixBlendMode: 'screen'
+        opacity: 2, // visibility thoda aur jyada
+        mixBlendMode: 'lighten' 
       }}
     />
   );
