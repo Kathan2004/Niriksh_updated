@@ -15,23 +15,20 @@ export function ParticleNetwork() {
     const particles = [];
     const particleCount = 200;  // Increased number of particles for more density
     const maxDistance = 150;    // Max distance between particles for lines to connect
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
 
     const createParticles = () => {
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
+      const radius = Math.min(canvasWidth, canvasHeight) / 2 - 50;  // Radius for particles
 
+      // Position particles along the perimeter (circumference) of the screen
       for (let i = 0; i < particleCount; i++) {
-        // Randomly place particles across the canvas while avoiding the center region
-        const x = Math.random() * canvasWidth;
-        const y = Math.random() * canvasHeight;
+        // Random angle for each particle
+        const angle = Math.random() * 2 * Math.PI;
+        const x = canvasWidth / 2 + radius * Math.cos(angle);  // X position along the boundary
+        const y = canvasHeight / 2 + radius * Math.sin(angle); // Y position along the boundary
 
-        // Prevent particles from being too close to the center (central region exclusion)
-        if (Math.abs(x - centerX) < 150 && Math.abs(y - centerY) < 150) {
-          continue;
-        }
-
+        // Random velocity to give particles some movement along the edge
         const vx = (Math.random() - 0.5) * 2;
         const vy = (Math.random() - 0.5) * 2;
 
@@ -59,7 +56,7 @@ export function ParticleNetwork() {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Bounce off canvas edges
+        // Keep particles within the canvas boundaries
         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
