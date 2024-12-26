@@ -102,7 +102,7 @@ export function ParticleNetwork() {
         top: 0,
         left: 0,
         pointerEvents: 'none',
-        zIndex: -2,
+        zIndex: 1,
         opacity: 1, // Valid opacity value (0-1)
         mixBlendMode: 'lighten',
       }}
