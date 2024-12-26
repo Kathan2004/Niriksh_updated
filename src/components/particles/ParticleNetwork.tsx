@@ -13,7 +13,7 @@ export function ParticleNetwork() {
     if (!ctx) return;
 
     const particles = [];
-    const particleCount = 80;
+    const particleCount = 150;  // Increased number of particles
     const maxDistance = 150;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
@@ -23,18 +23,24 @@ export function ParticleNetwork() {
       const canvasHeight = canvas.height;
 
       for (let i = 0; i < particleCount; i++) {
-        // Create particles around the center, but spread them outwards
-        const distanceFromCenter = Math.random() * canvasWidth * 0.4 + 100; // Spread particles farther out from the center
-        const angle = Math.random() * Math.PI * 2; // Random angle
+        // Randomly place particles across the screen but avoid the center too much
+        const x = Math.random() * canvasWidth;
+        const y = Math.random() * canvasHeight;
 
-        const x = centerX + Math.cos(angle) * distanceFromCenter;
-        const y = centerY + Math.sin(angle) * distanceFromCenter;
+        // Avoid placing particles too close to the center
+        if (Math.abs(x - centerX) < 150 && Math.abs(y - centerY) < 150) {
+          continue;
+        }
+
+        // Slight randomness to create organic patterns
+        const vx = (Math.random() - 0.5) * 2;
+        const vy = (Math.random() - 0.5) * 2;
 
         particles.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
+          vx,
+          vy,
           size: Math.random() * 3 + 1,
           color: isDark
             ? Math.random() > 0.5
@@ -64,7 +70,7 @@ export function ParticleNetwork() {
         ctx.fillStyle = particle.color;
         ctx.fill();
 
-        // Connect particles with lines
+        // Connect particles with lines, making sure to avoid too many center connections
         for (let j = index + 1; j < particles.length; j++) {
           const dx = particles[j].x - particle.x;
           const dy = particles[j].y - particle.y;
