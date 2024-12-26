@@ -15,22 +15,31 @@ export function ParticleNetwork() {
     const particles = [];
     const particleCount = 80;
     const maxDistance = 150;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
 
     const createParticles = () => {
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
 
       for (let i = 0; i < particleCount; i++) {
+        // Create particles around the center, but spread them outwards
+        const distanceFromCenter = Math.random() * canvasWidth * 0.4 + 100; // Spread particles farther out from the center
+        const angle = Math.random() * Math.PI * 2; // Random angle
+
+        const x = centerX + Math.cos(angle) * distanceFromCenter;
+        const y = centerY + Math.sin(angle) * distanceFromCenter;
+
         particles.push({
-          x: Math.random() * canvasWidth,
-          y: Math.random() * canvasHeight,
+          x,
+          y,
           vx: (Math.random() - 0.5) * 2,
           vy: (Math.random() - 0.5) * 2,
           size: Math.random() * 3 + 1,
           color: isDark
             ? Math.random() > 0.5
-              ? 'rgba(147, 51, 234, 0.6)' // Dark purple
-              : 'rgba(100, 100, 150, 0.6)' // Muted bluish tone
+              ? 'rgba(147, 51, 234, 0.4)' // Dark purple with less opacity
+              : 'rgba(100, 100, 150, 0.4)' // Muted bluish tone with less opacity
             : Math.random() > 0.5
             ? 'rgba(147, 51, 234, 0.8)' // Light purple
             : 'rgba(255, 255, 255, 0.6)', // Soft white
@@ -67,7 +76,7 @@ export function ParticleNetwork() {
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = isDark
-              ? `rgba(147, 51, 234, ${opacity})` // Dark purple lines
+              ? `rgba(147, 51, 234, ${opacity * 0.5})` // Darker purple lines with less opacity
               : `rgba(147, 51, 234, ${opacity})`; // Light purple lines
             ctx.lineWidth = 1;
             ctx.stroke();
