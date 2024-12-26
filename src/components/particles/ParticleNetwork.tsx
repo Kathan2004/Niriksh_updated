@@ -28,6 +28,7 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
       canvas.style.height = `${rect.height}px`;
 
       createParticles(); // Adjust particles on resize
+      detectTextAreas(); // Update text areas
     };
 
     const random = seededRandom(seed); // Use seeded random generator
@@ -68,6 +69,29 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
       setTimeout(() => (isMouseMoving = false), 100);
     });
 
+    // Automatically detect text areas
+    let textAreas: DOMRect[] = [];
+
+    const detectTextAreas = () => {
+      // Select all elements likely to contain text (headers, paragraphs, spans, etc.)
+      const textElements = document.querySelectorAll(
+        'h1, h2, h3, h4, h5, h6, p, span, div, li, a, button, label, input, textarea'
+      );
+
+      textAreas = Array.from(textElements).map((el) => el.getBoundingClientRect());
+    };
+
+    const isInTextArea = (x: number, y: number) => {
+      return textAreas.some((rect) => {
+        return (
+          x >= rect.left &&
+          x <= rect.right &&
+          y >= rect.top &&
+          y <= rect.bottom
+        );
+      });
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -75,9 +99,17 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
+        // Avoid edges of the canvas
         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
+        // Avoid text areas
+        if (isInTextArea(particle.x, particle.y)) {
+          particle.vx *= -1;
+          particle.vy *= -1;
+        }
+
+        // Interact with mouse
         if (isMouseMoving) {
           const dx = mouseX - particle.x;
           const dy = mouseY - particle.y;
@@ -119,6 +151,7 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    detectTextAreas(); // Initial detection
 
     animate();
 
@@ -135,7 +168,7 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
         position: 'fixed',
         top: 0,
         left: 0,
-        pointerEvents: 'auto',
+        pointerEvents: 'none',
         zIndex: -3,
         opacity: 0.8,
         mixBlendMode: 'lighten',
