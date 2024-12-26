@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
-export function ParticleNetwork() {
+interface ParticleNetworkProps {
+  seed: number;
+}
+
+export function ParticleNetwork({ seed }: ParticleNetworkProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { isDark } = useTheme();
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -27,7 +31,8 @@ export function ParticleNetwork() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const particleCount = 100; // Increased particle count network thick dikhega
+    const random = seededRandom(seed); // Use seeded random generator
+    const particleCount = 100;
     const particles: Array<{
       x: number;
       y: number;
@@ -38,11 +43,11 @@ export function ParticleNetwork() {
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 1,
-        vy: (Math.random() - 0.5) * 1,
-        size: Math.random() * 3 + 2 // Larger particle size
+        x: random() * canvas.width,
+        y: random() * canvas.height,
+        vx: (random() - 0.5) * 1,
+        vy: (random() - 0.5) * 1,
+        size: random() * 3 + 2
       });
     }
 
@@ -73,16 +78,16 @@ export function ParticleNetwork() {
           const dy = mouseY - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 150) { // interaction radius bada
+          if (distance < 150) {
             const angle = Math.atan2(dy, dx);
-            particle.vx -= Math.cos(angle) * 0.4; // Stronger push
+            particle.vx -= Math.cos(angle) * 0.4;
             particle.vy -= Math.sin(angle) * 0.4;
           }
         }
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.8)' : 'rgba(147, 51, 234, 0.6)'; // Increased opacity
+        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.8)' : 'rgba(147, 51, 234, 0.6)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -91,12 +96,12 @@ export function ParticleNetwork() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 150) {
-            const opacity = (1 - distance / 150) * (isDark ? 0.6 : 0.4); // Enhanced visibility
+            const opacity = (1 - distance / 150) * (isDark ? 0.6 : 0.4);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(147, 51, 234, ${opacity})`;
-            ctx.lineWidth = 1.5; // lines ko thicken kiya
+            ctx.lineWidth = 1.5;
             ctx.stroke();
           }
         }
@@ -110,7 +115,7 @@ export function ParticleNetwork() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [isDark]);
+  }, [isDark, seed]);
 
   return (
     <canvas
@@ -122,9 +127,18 @@ export function ParticleNetwork() {
         left: 0,
         pointerEvents: 'auto',
         zIndex: -1,
-        opacity: 2, // visibility thoda aur jyada
-        mixBlendMode: 'lighten' 
+        opacity: 2,
+        mixBlendMode: 'lighten'
       }}
     />
   );
 }
+
+// Seeded random generator function
+function seededRandom(seed: number) {
+  let value = seed;
+  return () => {
+    value = (value * 9301 + 49297) % 233280;
+    return value / 233280;
+  };
+              }
