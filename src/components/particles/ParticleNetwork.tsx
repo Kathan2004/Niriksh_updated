@@ -126,7 +126,7 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
         top: 0,
         left: 0,
         pointerEvents: 'auto',
-        zIndex: -1,
+        zIndex: -3,
         opacity: 2,
         mixBlendMode: 'lighten'
       }}
