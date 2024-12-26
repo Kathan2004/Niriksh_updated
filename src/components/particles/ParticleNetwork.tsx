@@ -19,37 +19,42 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
-      
+
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      
+
       ctx.scale(dpr, dpr);
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
+
+      createParticles(); // Adjust particles on resize
     };
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
     const random = seededRandom(seed); // Use seeded random generator
-    const particleCount = 100;
-    const particles: Array<{
+    let particles: Array<{
       x: number;
       y: number;
       vx: number;
       vy: number;
       size: number;
     }> = [];
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: random() * canvas.width,
-        y: random() * canvas.height,
-        vx: (random() - 0.5) * 1,
-        vy: (random() - 0.5) * 1,
-        size: random() * 3 + 2
-      });
-    }
+
+    const createParticles = () => {
+      const area = canvas.width * canvas.height;
+      const particleDensity = area > 500000 ? 0.00015 : 0.0003; // Lower density for larger screens
+      const particleCount = Math.floor(area * particleDensity);
+
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: random() * canvas.width,
+          y: random() * canvas.height,
+          vx: (random() - 0.5) * 1,
+          vy: (random() - 0.5) * 1,
+          size: random() * 3 + 2,
+        });
+      }
+    };
 
     let mouseX = 0;
     let mouseY = 0;
@@ -60,12 +65,12 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
       isMouseMoving = true;
-      setTimeout(() => isMouseMoving = false, 100);
+      setTimeout(() => (isMouseMoving = false), 100);
     });
 
-    function animate() {
+    const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particles.forEach((particle, i) => {
         particle.x += particle.vx;
         particle.y += particle.vy;
@@ -77,7 +82,7 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
           const dx = mouseX - particle.x;
           const dy = mouseY - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 150) {
             const angle = Math.atan2(dy, dx);
             particle.vx -= Math.cos(angle) * 0.4;
@@ -87,7 +92,9 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(147, 51, 234, 0.8)' : 'rgba(147, 51, 234, 0.6)';
+        ctx.fillStyle = isDark
+          ? 'rgba(147, 51, 234, 0.8)'
+          : 'rgba(147, 51, 234, 0.6)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -108,7 +115,10 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
       });
 
       requestAnimationFrame(animate);
-    }
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     animate();
 
@@ -121,14 +131,14 @@ export function ParticleNetwork({ seed }: ParticleNetworkProps) {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full"
-      style={{ 
+      style={{
         position: 'fixed',
         top: 0,
         left: 0,
         pointerEvents: 'auto',
         zIndex: -3,
-        opacity: 2,
-        mixBlendMode: 'lighten'
+        opacity: 0.8,
+        mixBlendMode: 'lighten',
       }}
     />
   );
@@ -141,4 +151,4 @@ function seededRandom(seed: number) {
     value = (value * 9301 + 49297) % 233280;
     return value / 233280;
   };
-              }
+}
