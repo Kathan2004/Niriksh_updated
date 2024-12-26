@@ -16,9 +16,16 @@ export function ParticleNetwork() {
     const particleCount = 80;
     const maxDistance = 150;
 
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+    };
+
     const createParticles = () => {
-      const canvasWidth = canvas.offsetWidth;
-      const canvasHeight = canvas.offsetHeight;
+      const canvasWidth = canvas.width / window.devicePixelRatio;
+      const canvasHeight = canvas.height / window.devicePixelRatio;
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -40,8 +47,10 @@ export function ParticleNetwork() {
         particle.y += particle.vy;
 
         // Bounce off canvas edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        if (particle.x < 0 || particle.x > canvas.width / window.devicePixelRatio)
+          particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height / window.devicePixelRatio)
+          particle.vy *= -1;
 
         // Draw particle
         ctx.beginPath();
@@ -73,14 +82,6 @@ export function ParticleNetwork() {
       requestAnimationFrame(animate);
     };
 
-    const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-    };
-
     resizeCanvas();
     createParticles();
     animate();
@@ -102,7 +103,7 @@ export function ParticleNetwork() {
         left: 0,
         pointerEvents: 'none',
         zIndex: -2,
-        opacity: 3,
+        opacity: 1, // Valid opacity value (0-1)
         mixBlendMode: 'lighten',
       }}
     />
