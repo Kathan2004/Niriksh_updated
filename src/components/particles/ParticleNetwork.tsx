@@ -16,16 +16,9 @@ export function ParticleNetwork() {
     const particleCount = 80;
     const maxDistance = 150;
 
-    const resizeCanvas = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
-    };
-
     const createParticles = () => {
-      const canvasWidth = canvas.width / window.devicePixelRatio;
-      const canvasHeight = canvas.height / window.devicePixelRatio;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -34,7 +27,13 @@ export function ParticleNetwork() {
           vx: (Math.random() - 0.5) * 2,
           vy: (Math.random() - 0.5) * 2,
           size: Math.random() * 3 + 1,
-          color: isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(147, 51, 234, 0.8)',
+          color: isDark
+            ? Math.random() > 0.5
+              ? 'rgba(147, 51, 234, 0.6)' // Dark purple
+              : 'rgba(100, 100, 150, 0.6)' // Muted bluish tone
+            : Math.random() > 0.5
+            ? 'rgba(147, 51, 234, 0.8)' // Light purple
+            : 'rgba(255, 255, 255, 0.6)', // Soft white
         });
       }
     };
@@ -47,10 +46,8 @@ export function ParticleNetwork() {
         particle.y += particle.vy;
 
         // Bounce off canvas edges
-        if (particle.x < 0 || particle.x > canvas.width / window.devicePixelRatio)
-          particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height / window.devicePixelRatio)
-          particle.vy *= -1;
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
         // Draw particle
         ctx.beginPath();
@@ -69,7 +66,9 @@ export function ParticleNetwork() {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.strokeStyle = isDark
+              ? `rgba(147, 51, 234, ${opacity})` // Dark purple lines
+              : `rgba(147, 51, 234, ${opacity})`; // Light purple lines
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -80,6 +79,11 @@ export function ParticleNetwork() {
     const animate = () => {
       drawParticles();
       requestAnimationFrame(animate);
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
     resizeCanvas();
@@ -96,14 +100,9 @@ export function ParticleNetwork() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full"
+      className="fixed inset-0 pointer-events-none"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        pointerEvents: 'none',
-        zIndex: 1,
-        opacity: 0.8, // Valid opacity value (0-1)
+        zIndex: -2,
         mixBlendMode: 'lighten',
       }}
     />
