@@ -13,8 +13,8 @@ export function ParticleNetwork() {
     if (!ctx) return;
 
     const particles = [];
-    const particleCount = 150;  // Increased number of particles
-    const maxDistance = 150;
+    const particleCount = 200;  // Increased number of particles for more density
+    const maxDistance = 150;    // Max distance between particles for lines to connect
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
@@ -23,16 +23,15 @@ export function ParticleNetwork() {
       const canvasHeight = canvas.height;
 
       for (let i = 0; i < particleCount; i++) {
-        // Randomly place particles across the screen but avoid the center too much
+        // Randomly place particles across the canvas while avoiding the center region
         const x = Math.random() * canvasWidth;
         const y = Math.random() * canvasHeight;
 
-        // Avoid placing particles too close to the center
+        // Prevent particles from being too close to the center (central region exclusion)
         if (Math.abs(x - centerX) < 150 && Math.abs(y - centerY) < 150) {
           continue;
         }
 
-        // Slight randomness to create organic patterns
         const vx = (Math.random() - 0.5) * 2;
         const vy = (Math.random() - 0.5) * 2;
 
@@ -41,14 +40,14 @@ export function ParticleNetwork() {
           y,
           vx,
           vy,
-          size: Math.random() * 3 + 1,
+          size: Math.random() * 3 + 1, // Random size of particles
           color: isDark
             ? Math.random() > 0.5
-              ? 'rgba(147, 51, 234, 0.4)' // Dark purple with less opacity
-              : 'rgba(100, 100, 150, 0.4)' // Muted bluish tone with less opacity
+              ? 'rgba(147, 51, 234, 0.3)' // Dark purple with low opacity
+              : 'rgba(100, 100, 150, 0.3)' // Muted bluish tone with low opacity
             : Math.random() > 0.5
-            ? 'rgba(147, 51, 234, 0.8)' // Light purple
-            : 'rgba(255, 255, 255, 0.6)', // Soft white
+            ? 'rgba(147, 51, 234, 0.5)' // Light purple with moderate opacity
+            : 'rgba(255, 255, 255, 0.4)', // Soft white with low opacity
         });
       }
     };
@@ -70,7 +69,7 @@ export function ParticleNetwork() {
         ctx.fillStyle = particle.color;
         ctx.fill();
 
-        // Connect particles with lines, making sure to avoid too many center connections
+        // Connect particles with lines, but make them more translucent
         for (let j = index + 1; j < particles.length; j++) {
           const dx = particles[j].x - particle.x;
           const dy = particles[j].y - particle.y;
@@ -82,8 +81,8 @@ export function ParticleNetwork() {
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = isDark
-              ? `rgba(147, 51, 234, ${opacity * 0.5})` // Darker purple lines with less opacity
-              : `rgba(147, 51, 234, ${opacity})`; // Light purple lines
+              ? `rgba(147, 51, 234, ${opacity * 0.3})` // Dark purple lines with low opacity
+              : `rgba(147, 51, 234, ${opacity * 0.5})`; // Light purple lines with moderate opacity
             ctx.lineWidth = 1;
             ctx.stroke();
           }
