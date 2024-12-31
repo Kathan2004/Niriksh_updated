@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, LineChart, PieChart, Activity, AlertTriangle, Shield, Link2, Server } from 'lucide-react';
+import { Activity, AlertTriangle, Shield, Link2, Server } from 'lucide-react';
 
 // Mock data for charts
 const typoStats = {

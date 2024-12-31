@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, ChevronDown, AlertTriangle, Globe, Shield } from 'lucide-react';
+import { Search, Filter, ChevronDown, Globe, Shield } from 'lucide-react';
 
 interface Alert {
   id: string;

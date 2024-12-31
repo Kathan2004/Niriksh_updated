@@ -25,6 +25,7 @@ import { AlertDetails } from '../../pages/admin/AlertDetails';
 import { Alerts } from '../../pages/admin/Alerts';
 import { Settings } from '../../pages/admin/Settings';
 import { Help } from '../../pages/admin/Help';
+import { Approvals } from '../../pages/admin/Approvals';
 import { ProtectedRoute } from '../auth/ProtectedRoute';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -69,6 +70,7 @@ export function AppContent() {
                 <Route path="alerts/:id" element={<AlertDetails />} />
                 <Route path="takedowns" element={<Takedowns />} />
                 <Route path="takedowns/:id" element={<TakedownDetails />} />
+                <Route path="approvals" element={<Approvals />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="help" element={<Help />} />
               </Route>
