@@ -29,7 +29,7 @@ export function Hero() {
               </button>
               <button 
                 onClick={() => window.location.href = '/about'}
-                className="px-8 py-3 bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
+                className="px-8 py-3 bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
               >
                 Learn More
               </button>
