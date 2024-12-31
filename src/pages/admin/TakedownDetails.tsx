@@ -1,65 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, MessageSquare, Activity, AlertTriangle, Calendar, User, Filter, ChevronDown } from 'lucide-react';
-
-interface TimelineEvent {
-  date: string;
-  title: string;
-  description: string;
-  user: string;
-}
-
-const timelineEvents: TimelineEvent[] = [
-  {
-    date: '2024-03-20 14:30',
-    title: 'Takedown Request Initiated',
-    description: 'Takedown request raised for phishing domain example-phish.com',
-    user: 'Karad'
-  },
-  {
-    date: '2024-03-20 15:45',
-    title: 'Initial Assessment',
-    description: 'Domain verified as malicious. Evidence collected.',
-    user: 'Admin'
-  },
-  {
-    date: '2024-03-21 09:15',
-    title: 'Notice Sent',
-    description: 'Takedown notice sent to hosting provider.',
-    user: 'Sahil'
-  }
-];
-
-const comments = [
-  {
-    id: 1,
-    user: 'Karad',
-    date: '2024-03-20 14:35',
-    content: 'Domain appears to be using our brand assets. High priority takedown required.'
-  },
-  {
-    id: 2,
-    user: 'Admin',
-    date: '2024-03-20 15:50',
-    content: 'Evidence collected and documented. Proceeding with takedown notice.'
-  }
-];
-
-const matchingAlerts = [
-  {
-    id: 1,
-    type: 'Phishing',
-    severity: 'High',
-    date: '2024-03-20 14:25',
-    description: 'Suspicious domain mimicking brand detected'
-  },
-  {
-    id: 2,
-    type: 'Brand Abuse',
-    severity: 'Medium',
-    date: '2024-03-20 14:28',
-    description: 'Unauthorized use of logo detected'
-  }
-];
+import { timelineEvents, comments, matchingAlerts } from '../../data/takedownData';
 
 export function TakedownDetails() {
   const [statusFilter, setStatusFilter] = useState('all');
@@ -98,9 +39,9 @@ export function TakedownDetails() {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column - Timeline & Comments */}
-        <div className="lg:col-span-2 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Column - Summary and Comments */}
+        <div className="lg:col-span-8 space-y-8">
           {/* Takedown Summary */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -127,26 +68,6 @@ export function TakedownDetails() {
                   <span className="text-gray-600 dark:text-gray-300">Priority: High</span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Timeline */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Clock className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Timeline</h2>
-            </div>
-            
-            <div className="space-y-6">
-              {timelineEvents.map((event, index) => (
-                <div key={index} className="relative pl-6 pb-6 border-l-2 border-purple-200 dark:border-purple-800 last:pb-0">
-                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-purple-600 dark:bg-purple-400 rounded-full" />
-                  <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">{event.date}</div>
-                  <div className="font-medium text-gray-900 dark:text-white mb-1">{event.title}</div>
-                  <div className="text-gray-600 dark:text-gray-300 text-sm">{event.description}</div>
-                  <div className="text-sm text-purple-600 dark:text-purple-400 mt-1">By {event.user}</div>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -182,8 +103,29 @@ export function TakedownDetails() {
           </div>
         </div>
 
-        {/* Right Column - Matching Alerts */}
-        <div className="space-y-8">
+        {/* Right Column - Timeline & Matching Alerts */}
+        <div className="lg:col-span-4 space-y-8">
+          {/* Timeline */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="flex items-center gap-2 mb-6">
+              <Clock className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Timeline</h2>
+            </div>
+            
+            <div className="space-y-6">
+              {timelineEvents.map((event, index) => (
+                <div key={index} className="relative pl-6 pb-6 border-l-2 border-purple-200 dark:border-purple-800 last:pb-0">
+                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-purple-600 dark:bg-purple-400 rounded-full" />
+                  <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">{event.date}</div>
+                  <div className="font-medium text-gray-900 dark:text-white mb-1">{event.title}</div>
+                  <div className="text-gray-600 dark:text-gray-300 text-sm">{event.description}</div>
+                  <div className="text-sm text-purple-600 dark:text-purple-400 mt-1">By {event.user}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Matching Alerts */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
             <div className="flex items-center gap-2 mb-6">
               <AlertTriangle className="w-6 h-6 text-purple-600 dark:text-purple-400" />
@@ -200,8 +142,7 @@ export function TakedownDetails() {
                   <div className="flex flex-col items-end">
                     <span className={`text-sm font-medium ${
                       alert.severity === 'High' ? 'text-red-600 dark:text-red-400' :
-                      alert.severity === 'Medium' ? 'text-yellow-600 dark:text-yellow-400' :
-                      'text-green-600 dark:text-green-400'
+                      'text-yellow-600 dark:text-yellow-400'
                     }`}>
                       {alert.severity}
                     </span>
@@ -211,8 +152,6 @@ export function TakedownDetails() {
               ))}
             </div>
           </div>
-
-          {/* Additional Info or Stats could go here */}
         </div>
       </div>
     </div>
