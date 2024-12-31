@@ -15,8 +15,8 @@ export function Hero() {
               Because Your Digital Identity Matters
             </h1>
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-              Empowering Indian enterprises with cutting-edge cybersecurity solutions.
-From tackling impersonations to executing red team simulations, we safeguard what matters most.
+              Empowering Indian businesses with next-generation cybersecurity solutions. 
+              From startups to enterprises, we protect what matters most.
             </p>
 
             {/* Action Buttons */}
@@ -29,7 +29,7 @@ From tackling impersonations to executing red team simulations, we safeguard wha
               </button>
               <button 
                 onClick={() => window.location.href = '/about'}
-                className="px-8 py-3 bg-white border-2 border-purple-600 text-black-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
+                className="px-8 py-3 bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transform hover:scale-105 transition-all"
               >
                 Learn More
               </button>

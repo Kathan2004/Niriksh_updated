@@ -14,9 +14,8 @@ export function MobileHero() {
               Because Your Digital Identity Matters
             </h1>
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-full md:max-w-2xl mx-auto">
-              Empowering Indian businesses with advanced cybersecurity, from  tackling impersonations to defending aginst the red team.
-</p>
-
+              Empowering Indian businesses with next-generation cybersecurity solutions. From startups to enterprises, we protect what matters most.
+            </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap justify-center gap-6 mb-12">

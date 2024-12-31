@@ -14,15 +14,10 @@ export function PageWrapper({ children }: PageWrapperProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-  // Generate a seed based on location.pathname or another fixed value
-  const seed = location.pathname
-    .split('')
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0); // Deterministic seed
-
   return (
     <div className="relative min-h-screen">
-      <div className="fixed inset-0 bg-gradient-to-br from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-purple-900/30 dark:to-gray-900" />
-      <ParticleNetwork seed={seed} /> {/* Pass seed as a prop */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-white to-purple-50/30 dark:from-gray-900 dark:via-purple-900/30 dark:to-gray-900" />
+      <ParticleNetwork />
       <motion.div
         initial={false}
         className="relative z-10 min-h-screen flex flex-col"

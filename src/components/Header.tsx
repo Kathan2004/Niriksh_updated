@@ -10,16 +10,18 @@ export function Header() {
     <header className="bg-white dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-80 backdrop-blur-md shadow-xl sticky top-0 z-50 transition-colors rounded-b-3xl">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
+          {/* Logo Section */}
+          <div className="flex-shrink-0">
             <Link to="/" className="flex items-center gap-2">
               <Shield className="w-8 h-8 text-purple-600 dark:text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 shadow-lg">
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">
                 निरीक्ष
               </span>
             </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Navigation Section with added margin */}
+          <nav className="hidden md:flex items-center gap-6 ml-12">
             <Link to="/" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 transform hover:scale-105">Home</Link>
             <Link to="/about" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 transform hover:scale-105">About</Link>
             <Link to="/services" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 transform hover:scale-105">Services</Link>

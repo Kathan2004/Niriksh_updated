@@ -16,49 +16,37 @@ import { Contact } from '../Contact';
 import { Login } from '../../pages/Login';
 import { SignUp } from '../../pages/SignUp';
 import { FAQ } from '../../pages/FAQ';
+import { AdminLayout } from '../admin/AdminLayout';
+import { AdminHome } from '../../pages/admin/AdminHome';
+import { Assets } from '../../pages/admin/Assets';
+import { Takedowns } from '../../pages/admin/Takedowns';
+import { TakedownDetails } from '../../pages/admin/TakedownDetails';
+import { AlertDetails } from '../../pages/admin/AlertDetails';
+import { Alerts } from '../../pages/admin/Alerts';
+import { Settings } from '../../pages/admin/Settings';
+import { Help } from '../../pages/admin/Help';
+import { ProtectedRoute } from '../auth/ProtectedRoute';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const location = useLocation();
-
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      scale: 0.98
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 1.02,
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <PageWrapper>
       <div className="min-h-screen">
-        {isMobile ? <MobileHeader /> : <Header />}
+        {!isAdminRoute && (isMobile ? <MobileHeader /> : <Header />)}
         <AnimatePresence mode="wait">
           <motion.main
             key={location.pathname}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             className="relative"
           >
             <Routes location={location}>
+              {/* Public Routes */}
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
@@ -68,11 +56,27 @@ export function AppContent() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+
+              {/* Protected Admin Routes */}
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminLayout />
+                </ProtectedRoute>
+              }>
+                <Route index element={<AdminHome />} />
+                <Route path="assets" element={<Assets />} />
+                <Route path="alerts" element={<Alerts />} />
+                <Route path="alerts/:id" element={<AlertDetails />} />
+                <Route path="takedowns" element={<Takedowns />} />
+                <Route path="takedowns/:id" element={<TakedownDetails />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="help" element={<Help />} />
+              </Route>
             </Routes>
           </motion.main>
         </AnimatePresence>
-        {isMobile ? <MobileFooter /> : <Footer />}
-        {isMobile && <MobileNavigation />}
+        {!isAdminRoute && (isMobile ? <MobileFooter /> : <Footer />)}
+        {!isAdminRoute && isMobile && <MobileNavigation />}
       </div>
     </PageWrapper>
   );

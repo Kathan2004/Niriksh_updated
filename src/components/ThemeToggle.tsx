@@ -1,7 +1,6 @@
-// src/components/ThemeToggle.tsx
 import React from 'react';
-import { Moon, Sun } from 'lucide-react'; // Importing icons from lucide-react
-import { useTheme } from '../hooks/useTheme'; // Importing useTheme hook
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 
 export function ThemeToggle() {
   const { isDark, toggleTheme } = useTheme();

@@ -21,6 +21,8 @@ export function FAQTabs({ activeCategory, setActiveCategory }: FAQTabsProps) {
     <div className="relative flex items-center">
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
+        aria-expanded={dropdownOpen}
+        aria-label="Toggle FAQ categories"
         className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold shadow-md backdrop-blur-lg bg-white/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-indigo-50/50 dark:hover:bg-gray-700 transition ${
           dropdownOpen ? 'bg-indigo-600 text-white' : ''
         }`}
