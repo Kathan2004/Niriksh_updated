@@ -1,4 +1,4 @@
-import create from 'zustand';  // Corrected import
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface Asset {
