@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { User, Lock, Cog, Bell, Database, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Lock, Cog, Bell, Database, Globe, Users } from 'lucide-react';
+import { AddUserForm } from '../../components/settings/AddUserForm';
+import { Modal } from '../../components/Modal';
 
-function Modal({ isOpen, onClose, title, children }: any) {
+function SettingsModal({ isOpen, onClose, title, children }: any) {
   if (!isOpen) return null;
 
   return (
@@ -17,63 +19,18 @@ function Modal({ isOpen, onClose, title, children }: any) {
           </button>
         </div>
         {children}
-        <div className="mt-4">
-          <button
-            onClick={onClose}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg"
-          >
-            Save
-          </button>
-        </div>
       </div>
     </div>
   );
 }
 
 export function Settings() {
-  const defaultSettings = {
-    name: '',
-    email: '',
-    password: '',
-    notifications: {
-      email: true,
-      sms: false,
-      push: true,
-    },
-    subscriptionPlan: 'Free',
-    region: 'India',
-    language: 'English',
-  };
-
-  const [settings, setSettings] = useState<any>(defaultSettings);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSetting, setActiveSetting] = useState<any>(null);
 
-  // Load settings from local storage on component mount
-  useEffect(() => {
-    const savedSettings = localStorage.getItem('userSettings');
-    if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
-    }
-  }, []);
-
-  // Save settings to local storage whenever they change
-  useEffect(() => {
-    localStorage.setItem('userSettings', JSON.stringify(settings));
-  }, [settings]);
-
-  const updateSetting = (key: string, value: any) => {
-    setSettings((prev: any) => ({ ...prev, [key]: value }));
-  };
-
-  const updateNestedSetting = (key: string, nestedKey: string, value: any) => {
-    setSettings((prev: any) => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        [nestedKey]: value,
-      },
-    }));
+  const handleAddUser = (userData: any) => {
+    console.log('Adding user:', userData);
+    setIsModalOpen(false);
   };
 
   const settingsOptions = [
@@ -81,120 +38,24 @@ export function Settings() {
       title: 'Profile Settings',
       description: 'Update your personal information and preferences',
       icon: User,
-      content: (
-        <>
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
-          <input
-            type="text"
-            value={settings.name}
-            onChange={(e) => updateSetting('name', e.target.value)}
-            className="block w-full px-3 py-2 mb-4 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-            placeholder="Enter your name"
-          />
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
-          <input
-            type="email"
-            value={settings.email}
-            onChange={(e) => updateSetting('email', e.target.value)}
-            className="block w-full px-3 py-2 mb-4 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-            placeholder="Enter your email"
-          />
-        </>
-      ),
     },
     {
       title: 'Security',
-      description: 'Manage password, two-factor authentication, and other security settings',
+      description: 'Manage password and security settings',
       icon: Lock,
-      content: (
-        <>
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">New Password</label>
-          <input
-            type="password"
-            value={settings.password}
-            onChange={(e) => updateSetting('password', e.target.value)}
-            className="block w-full px-3 py-2 mb-4 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-            placeholder="Enter new password"
-          />
-        </>
-      ),
     },
     {
       title: 'Notifications',
-      description: 'Customize your notification preferences',
+      description: 'Configure notification preferences',
       icon: Bell,
-      content: (
-        <>
-          <label className="flex items-center mb-4 text-sm text-gray-600 dark:text-gray-400">
-            <input
-              type="checkbox"
-              checked={settings.notifications.email}
-              onChange={(e) => updateNestedSetting('notifications', 'email', e.target.checked)}
-              className="mr-2 rounded focus:ring-purple-600"
-            />
-            Email Notifications
-          </label>
-          <label className="flex items-center mb-4 text-sm text-gray-600 dark:text-gray-400">
-            <input
-              type="checkbox"
-              checked={settings.notifications.sms}
-              onChange={(e) => updateNestedSetting('notifications', 'sms', e.target.checked)}
-              className="mr-2 rounded focus:ring-purple-600"
-            />
-            SMS Notifications
-          </label>
-          <label className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-            <input
-              type="checkbox"
-              checked={settings.notifications.push}
-              onChange={(e) => updateNestedSetting('notifications', 'push', e.target.checked)}
-              className="mr-2 rounded focus:ring-purple-600"
-            />
-            Push Notifications
-          </label>
-        </>
-      ),
     },
     {
-      title: 'Language & Region',
-      description: 'Change language and regional settings',
-      icon: Globe,
-      content: (
-        <>
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">Language</label>
-          <select
-            value={settings.language}
-            onChange={(e) => updateSetting('language', e.target.value)}
-            className="block w-full px-3 py-2 mb-4 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-          >
-            <option>English</option>
-            <option>Spanish</option>
-            <option>French</option>
-          </select>
-          <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">Region</label>
-          <select
-            value={settings.region}
-            onChange={(e) => updateSetting('region', e.target.value)}
-            className="block w-full px-3 py-2 mb-4 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-          >
-            <option>India</option>
-            <option>US</option>
-            <option>Europe</option>
-          </select>
-        </>
-      ),
+      title: 'Add User',
+      description: 'Add new users and manage their roles',
+      icon: Users,
+      content: <AddUserForm onSubmit={handleAddUser} />,
     },
   ];
-
-  const openModal = (setting: any) => {
-    setActiveSetting(setting);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setActiveSetting(null);
-  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -204,7 +65,10 @@ export function Settings() {
           <div
             key={index}
             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
-            onClick={() => openModal(option)}
+            onClick={() => {
+              setActiveSetting(option);
+              setIsModalOpen(true);
+            }}
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
@@ -217,23 +81,16 @@ export function Settings() {
         ))}
       </div>
 
-      {/* Modal */}
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={activeSetting?.title}>
+      <SettingsModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setActiveSetting(null);
+        }}
+        title={activeSetting?.title}
+      >
         {activeSetting?.content}
-      </Modal>
+      </SettingsModal>
     </div>
   );
 }
-
-// AdminHome Component
-export default function AdminHome() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Home</h1>
-      <Settings />
-    </div>
-  );
-}
-
-
-
