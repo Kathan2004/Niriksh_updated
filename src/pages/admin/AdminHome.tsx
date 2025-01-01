@@ -191,8 +191,8 @@ export function AdminHome() {
                   <span className="font-medium text-gray-900 dark:text-white">{integration.name}</span>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  integration.status === 'Connected'
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
+                  integration.status === '  Disconnected'
+                    ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
                     : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
                 }`}>
                   {integration.status}
