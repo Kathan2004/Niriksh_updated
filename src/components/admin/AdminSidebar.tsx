@@ -7,7 +7,7 @@ const navigation = [
   { name: 'Assets', icon: Database, path: '/admin/assets' },
   { name: 'Alerts', icon: AlertTriangle, path: '/admin/alerts' },
   { name: 'Takedowns', icon: Shield, path: '/admin/takedowns' },
-  { name: 'Approvals', icon: CheckSquare, path: '/admin/approvals' },
+
   { name: 'Settings', icon: Settings, path: '/admin/settings' },
   { name: 'Help', icon: HelpCircle, path: '/admin/help' },
 ];
