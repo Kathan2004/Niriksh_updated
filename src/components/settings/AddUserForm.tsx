@@ -55,8 +55,7 @@ export function AddUserForm({ onSubmit }: AddUserFormProps) {
           className="block w-full px-3 py-2 text-gray-900 bg-gray-100 border rounded-lg focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
         >
           <option value="user">User</option>
-          <option value="admin">Admin</option>
-          <option value="superadmin">Super Admin</option>
+         
         </select>
       </div>
 
